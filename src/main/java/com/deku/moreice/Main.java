@@ -113,6 +113,12 @@ public class Main
             registerEvent.register(ForgeRegistries.Keys.ITEMS, registrar -> {
                 // Ice
                 registrar.register(new ResourceLocation(MOD_ID, "ice_stairs"), new BlockItem(ModBlockInitializer.ICE_STAIRS.get(), new Item.Properties()));
+
+                // Packed Ice
+                registrar.register(new ResourceLocation(MOD_ID, "packed_ice_stairs"), new BlockItem(ModBlockInitializer.PACKED_ICE_STAIRS.get(), new Item.Properties()));
+
+                // Blue Ice
+                registrar.register(new ResourceLocation(MOD_ID, "blue_ice_stairs"), new BlockItem(ModBlockInitializer.BLUE_ICE_STAIRS.get(), new Item.Properties()));
             });
         }
 
@@ -129,6 +135,12 @@ public class Main
             if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
                 // Ice
                 entries.putAfter(new ItemStack(Items.ICE), new ItemStack(ModItems.ICE_STAIRS), visibility);
+
+                // Packed Ice
+                entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.ICE_STAIRS), visibility);
+
+                // Blue Ice
+                entries.putAfter(new ItemStack(Items.BLUE_ICE), new ItemStack(ModItems.ICE_STAIRS), visibility);
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
 
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {

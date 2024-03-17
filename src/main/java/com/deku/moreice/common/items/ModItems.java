@@ -6,6 +6,15 @@ import net.minecraftforge.registries.ObjectHolder;
 import static com.deku.moreice.Main.MOD_ID;
 
 public class ModItems {
+    // ICE
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_stairs")
     public static BlockItem ICE_STAIRS;
+
+    // PACKED ICE
+    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_stairs")
+    public static BlockItem PACKED_ICE_STAIRS;
+
+    // BLUE ICE
+    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_stairs")
+    public static BlockItem BLUE_ICE_STAIRS;
 }

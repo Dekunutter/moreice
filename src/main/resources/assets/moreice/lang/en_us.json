@@ -1,5 +1,9 @@
 {
   "block.moreice.ice_stairs": "Ice Stairs",
+  "block.moreice.packed_ice_stairs": "Packed Ice Stairs",
+  "block.moreice.blue_ice_stairs": "Blue Ice Stairs",
   "item.moreice.ice_stairs": "Ice Stairs",
+  "item.moreice.packed_ice_stairs": "Packed Ice Stairs",
+  "item.moreice.blue_ice_stairs": "Blue Ice Stairs",
   "tab.mod": "More Ice"
 }
