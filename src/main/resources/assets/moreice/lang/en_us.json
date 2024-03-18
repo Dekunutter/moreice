@@ -2,8 +2,14 @@
   "block.moreice.ice_stairs": "Ice Stairs",
   "block.moreice.packed_ice_stairs": "Packed Ice Stairs",
   "block.moreice.blue_ice_stairs": "Blue Ice Stairs",
+  "block.moreice.ice_slab": "Ice Slab",
+  "block.moreice.packed_ice_slab": "Packed Ice Slab",
+  "block.moreice.blue_ice_slab": "Blue Ice Slab",
   "item.moreice.ice_stairs": "Ice Stairs",
   "item.moreice.packed_ice_stairs": "Packed Ice Stairs",
   "item.moreice.blue_ice_stairs": "Blue Ice Stairs",
+  "item.moreice.ice_slab": "Ice Slab",
+  "item.moreice.packed_ice_slab": "Packed Ice Slab",
+  "item.moreice.blue_ice_slab": "Blue Ice Slab",
   "tab.mod": "More Ice"
 }

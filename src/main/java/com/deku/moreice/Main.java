@@ -113,12 +113,15 @@ public class Main
             registerEvent.register(ForgeRegistries.Keys.ITEMS, registrar -> {
                 // Ice
                 registrar.register(new ResourceLocation(MOD_ID, "ice_stairs"), new BlockItem(ModBlockInitializer.ICE_STAIRS.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "ice_slab"), new BlockItem(ModBlockInitializer.ICE_SLAB.get(), new Item.Properties()));
 
                 // Packed Ice
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_stairs"), new BlockItem(ModBlockInitializer.PACKED_ICE_STAIRS.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "packed_ice_slab"), new BlockItem(ModBlockInitializer.PACKED_ICE_SLAB.get(), new Item.Properties()));
 
                 // Blue Ice
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_stairs"), new BlockItem(ModBlockInitializer.BLUE_ICE_STAIRS.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "blue_ice_slab"), new BlockItem(ModBlockInitializer.BLUE_ICE_SLAB.get(), new Item.Properties()));
             });
         }
 
@@ -135,12 +138,15 @@ public class Main
             if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
                 // Ice
                 entries.putAfter(new ItemStack(Items.ICE), new ItemStack(ModItems.ICE_STAIRS), visibility);
+                entries.putAfter(new ItemStack(Items.ICE), new ItemStack(ModItems.ICE_SLAB), visibility);
 
                 // Packed Ice
-                entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.ICE_STAIRS), visibility);
+                entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.PACKED_ICE_STAIRS), visibility);
+                entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.PACKED_ICE_SLAB), visibility);
 
                 // Blue Ice
-                entries.putAfter(new ItemStack(Items.BLUE_ICE), new ItemStack(ModItems.ICE_STAIRS), visibility);
+                entries.putAfter(new ItemStack(Items.BLUE_ICE), new ItemStack(ModItems.BLUE_ICE_STAIRS), visibility);
+                entries.putAfter(new ItemStack(Items.BLUE_ICE), new ItemStack(ModItems.BLUE_ICE_SLAB), visibility);
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
 
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {

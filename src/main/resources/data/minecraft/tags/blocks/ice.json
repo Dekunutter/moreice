@@ -3,6 +3,9 @@
   "values": [
     "moreice:ice_stairs",
     "moreice:packed_ice_stairs",
-    "moreice:blue_ice_stairs"
+    "moreice:blue_ice_stairs",
+    "moreice:ice_slab",
+    "moreice:packed_ice_slab",
+    "moreice:blue_ice_slab"
   ]
 }

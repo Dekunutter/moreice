@@ -16,11 +16,14 @@ public class ModCreativeTabs {
     public static RegistryObject<CreativeModeTab> MOD_CREATIVE_TAB = CREATIVE_MOD_TABS.register("mod_creative_tab", () -> new CreativeModeTab.Builder(CreativeModeTab.Row.TOP, 0).icon(() -> new ItemStack(ModItems.ICE_STAIRS)).title(Component.translatable("More Ice")).displayItems((featureFlags, output) -> {
         // ICE
         output.accept(ModItems.ICE_STAIRS);
+        output.accept(ModItems.ICE_SLAB);
 
         // PACKED ICE
         output.accept(ModItems.PACKED_ICE_STAIRS);
+        output.accept(ModItems.PACKED_ICE_SLAB);
 
         // BLUE ICE
         output.accept(ModItems.BLUE_ICE_STAIRS);
+        output.accept(ModItems.BLUE_ICE_SLAB);
     }).build());
 }

@@ -5,9 +5,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.extensions.IForgeBlock;
 
-public class IceStairs extends AbstractIceStairs {
+public class IceStairs extends StairBlock implements Ice, IForgeBlock {
     public IceStairs() {
         super(Blocks.ICE.defaultBlockState(), Properties.ofLegacyCopy(Blocks.ICE));
     }
