@@ -6,6 +6,9 @@
     "moreice:blue_ice_stairs",
     "moreice:ice_slab",
     "moreice:packed_ice_slab",
-    "moreice:blue_ice_slab"
+    "moreice:blue_ice_slab",
+    "moreice:ice_wall",
+    "moreice:packed_ice_wall",
+    "moreice:blue_ice_wall"
   ]
 }

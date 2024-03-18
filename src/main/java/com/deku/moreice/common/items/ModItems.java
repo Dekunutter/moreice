@@ -13,6 +13,9 @@ public class ModItems {
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_slab")
     public static BlockItem ICE_SLAB;
 
+    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_wall.json")
+    public static BlockItem ICE_WALL;
+
     // PACKED ICE
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_stairs")
     public static BlockItem PACKED_ICE_STAIRS;
@@ -20,10 +23,16 @@ public class ModItems {
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_slab")
     public static BlockItem PACKED_ICE_SLAB;
 
+    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_wall")
+    public static BlockItem PACKED_ICE_WALL;
+
     // BLUE ICE
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_stairs")
     public static BlockItem BLUE_ICE_STAIRS;
 
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_slab")
     public static BlockItem BLUE_ICE_SLAB;
+
+    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_wall")
+    public static BlockItem BLUE_ICE_WALL;
 }
