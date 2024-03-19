@@ -111,7 +111,7 @@ public class Main
         @SubscribeEvent
         public static void onItemsRegistry(final RegisterEvent registerEvent) {
             registerEvent.register(ForgeRegistries.Keys.ITEMS, registrar -> {
-                // TODO: Ice walls, ice sign, ice bricks, ice trapdoor, ice pressure plate, maybe make ice brick variant of the wall (or replace the current wall with an ice brick once since it will likely just look nicer
+                // TODO: ice sign, ice bricks, ice trapdoor, ice pressure plate, maybe make ice brick variant of the wall (or replace the current wall with an ice brick once since it will likely just look nicer
                 // TODO: Consider adding a new form of ice entirely, clear ice?
                 // TODO: Add ice cubes as a decoration item? Placed like candles?
                 // TODO: Add either a tool to harvest ice blocks, or a freezer for turning buckets of water into 8 ice blocks
@@ -119,17 +119,20 @@ public class Main
                 // Ice
                 registrar.register(new ResourceLocation(MOD_ID, "ice_stairs"), new BlockItem(ModBlockInitializer.ICE_STAIRS.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "ice_slab"), new BlockItem(ModBlockInitializer.ICE_SLAB.get(), new Item.Properties()));
-                registrar.register(new ResourceLocation(MOD_ID, "ice_wall.json"), new BlockItem(ModBlockInitializer.ICE_WALL.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "ice_wall"), new BlockItem(ModBlockInitializer.ICE_WALL.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "ice_bricks"), new BlockItem(ModBlockInitializer.ICE_BRICKS.get(), new Item.Properties()));
 
                 // Packed Ice
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_stairs"), new BlockItem(ModBlockInitializer.PACKED_ICE_STAIRS.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_slab"), new BlockItem(ModBlockInitializer.PACKED_ICE_SLAB.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_wall"), new BlockItem(ModBlockInitializer.PACKED_ICE_WALL.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "packed_ice_bricks"), new BlockItem(ModBlockInitializer.PACKED_ICE_BRICKS.get(), new Item.Properties()));
 
                 // Blue Ice
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_stairs"), new BlockItem(ModBlockInitializer.BLUE_ICE_STAIRS.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_slab"), new BlockItem(ModBlockInitializer.BLUE_ICE_SLAB.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_wall"), new BlockItem(ModBlockInitializer.BLUE_ICE_WALL.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "blue_ice_bricks"), new BlockItem(ModBlockInitializer.BLUE_ICE_BRICKS.get(), new Item.Properties()));
             });
         }
 
@@ -148,16 +151,19 @@ public class Main
                 entries.putAfter(new ItemStack(Items.ICE), new ItemStack(ModItems.ICE_STAIRS), visibility);
                 entries.putAfter(new ItemStack(ModItems.ICE_STAIRS), new ItemStack(ModItems.ICE_SLAB), visibility);
                 entries.putAfter(new ItemStack(ModItems.ICE_SLAB), new ItemStack(ModItems.ICE_WALL), visibility);
+                entries.putAfter(new ItemStack(ModItems.ICE_WALL), new ItemStack(ModItems.ICE_BRICKS), visibility);
 
                 // Packed Ice
                 entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.PACKED_ICE_STAIRS), visibility);
                 entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.PACKED_ICE_SLAB), visibility);
                 entries.putAfter(new ItemStack(ModItems.PACKED_ICE_SLAB), new ItemStack(ModItems.PACKED_ICE_WALL), visibility);
+                entries.putAfter(new ItemStack(ModItems.PACKED_ICE_WALL), new ItemStack(ModItems.PACKED_ICE_BRICKS), visibility);
 
                 // Blue Ice
                 entries.putAfter(new ItemStack(Items.BLUE_ICE), new ItemStack(ModItems.BLUE_ICE_STAIRS), visibility);
                 entries.putAfter(new ItemStack(Items.BLUE_ICE), new ItemStack(ModItems.BLUE_ICE_SLAB), visibility);
                 entries.putAfter(new ItemStack(ModItems.BLUE_ICE_SLAB), new ItemStack(ModItems.BLUE_ICE_WALL), visibility);
+                entries.putAfter(new ItemStack(ModItems.BLUE_ICE_WALL), new ItemStack(ModItems.BLUE_ICE_BRICKS), visibility);
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
 
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {

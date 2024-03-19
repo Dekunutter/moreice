@@ -8,6 +8,9 @@
   "block.moreice.ice_wall": "Ice Wall",
   "block.moreice.packed_ice_wall": "Packed Ice Wall",
   "block.moreice.blue_ice_wall": "Blue Ice Wall",
+  "block.moreice.ice_bricks": "Ice Bricks",
+  "block.moreice.packed_ice_bricks": "Packed Ice Bricks",
+  "block.moreice.blue_ice_bricks": "Blue Ice Bricks",
   "item.moreice.ice_stairs": "Ice Stairs",
   "item.moreice.packed_ice_stairs": "Packed Ice Stairs",
   "item.moreice.blue_ice_stairs": "Blue Ice Stairs",
@@ -17,5 +20,8 @@
   "item.moreice.ice_wall": "Ice Wall",
   "item.moreice.packed_ice_wall": "Packed Ice Wall",
   "item.moreice.blue_ice_wall": "Blue Ice Wall",
+  "item.moreice.ice_bricks": "Ice Bricks",
+  "item.moreice.packed_ice_bricks": "Packed Ice Bricks",
+  "item.moreice.blue_ice_bricks": "Blue Ice Bricks",
   "tab.mod": "More Ice"
 }

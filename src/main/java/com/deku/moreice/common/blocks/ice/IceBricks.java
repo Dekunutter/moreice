@@ -4,14 +4,14 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LightLayer;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.extensions.IForgeBlock;
 
-public class IceWall extends WallBlock implements Ice, IForgeBlock {
-    public IceWall() {
-        super(Properties.ofLegacyCopy(Blocks.ICE).forceSolidOn());
+public class IceBricks extends Block implements Ice, IForgeBlock {
+    public IceBricks() {
+        super(Properties.ofLegacyCopy(Blocks.ICE));
     }
 
     public void randomTick(BlockState state, ServerLevel level, BlockPos position, RandomSource random) {
