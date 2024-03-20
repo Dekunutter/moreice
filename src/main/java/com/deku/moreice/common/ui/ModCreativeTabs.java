@@ -19,17 +19,20 @@ public class ModCreativeTabs {
         output.accept(ModItems.ICE_SLAB);
         output.accept(ModItems.ICE_WALL);
         output.accept(ModItems.ICE_BRICKS);
+        output.accept(ModItems.ICE_PRESSURE_PLATE);
 
         // PACKED ICE
         output.accept(ModItems.PACKED_ICE_STAIRS);
         output.accept(ModItems.PACKED_ICE_SLAB);
         output.accept(ModItems.PACKED_ICE_WALL);
         output.accept(ModItems.PACKED_ICE_BRICKS);
+        output.accept(ModItems.PACKED_ICE_PRESSURE_PLATE);
 
         // BLUE ICE
         output.accept(ModItems.BLUE_ICE_STAIRS);
         output.accept(ModItems.BLUE_ICE_SLAB);
         output.accept(ModItems.BLUE_ICE_WALL);
         output.accept(ModItems.BLUE_ICE_BRICKS);
+        output.accept(ModItems.BLUE_ICE_PRESSURE_PLATE);
     }).build());
 }

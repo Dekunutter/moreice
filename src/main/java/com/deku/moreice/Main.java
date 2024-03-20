@@ -3,10 +3,12 @@ package com.deku.moreice;
 import com.deku.eastwardjourneys.utils.LogTweaker;
 import com.deku.eastwardjourneys.utils.ModConfiguration;
 import com.deku.moreice.common.blocks.ModBlockInitializer;
+import com.deku.moreice.common.blocks.ModBlockSetType;
 import com.deku.moreice.common.items.ModItems;
 import com.deku.moreice.common.ui.ModCreativeTabs;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.MutableHashedLinkedMap;
 import net.minecraftforge.event.*;
@@ -17,6 +19,7 @@ import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModProcessEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -69,6 +72,8 @@ public class Main
         // Creative Mode Tabs
         ModCreativeTabs.CREATIVE_MOD_TABS.register(eventBus);
 
+        eventBus.addListener(this::setup);
+
         // Register the enqueueIMC method for modloading
         eventBus.addListener(this::enqueueIMC);
         // Register the processIMC method for modloading
@@ -77,6 +82,12 @@ public class Main
         // Register ourselves for server and other game events we are interested in
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
         forgeEventBus.register(this);
+    }
+
+    private void setup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> {
+            BlockSetType.register(ModBlockSetType.ICE);
+        });
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event)
@@ -111,7 +122,8 @@ public class Main
         @SubscribeEvent
         public static void onItemsRegistry(final RegisterEvent registerEvent) {
             registerEvent.register(ForgeRegistries.Keys.ITEMS, registrar -> {
-                // TODO: ice sign, ice bricks, ice trapdoor, ice pressure plate, maybe make ice brick variant of the wall (or replace the current wall with an ice brick once since it will likely just look nicer
+                // TODO: Texture for ice bricks
+                // TODO: ice sign, ice button, ice door, ice trapdoor, maybe make ice brick variant of the wall (or replace the current wall with an ice brick once since it will likely just look nicer
                 // TODO: Consider adding a new form of ice entirely, clear ice?
                 // TODO: Add ice cubes as a decoration item? Placed like candles?
                 // TODO: Add either a tool to harvest ice blocks, or a freezer for turning buckets of water into 8 ice blocks
@@ -121,18 +133,21 @@ public class Main
                 registrar.register(new ResourceLocation(MOD_ID, "ice_slab"), new BlockItem(ModBlockInitializer.ICE_SLAB.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "ice_wall"), new BlockItem(ModBlockInitializer.ICE_WALL.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "ice_bricks"), new BlockItem(ModBlockInitializer.ICE_BRICKS.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "ice_pressure_plate"), new BlockItem(ModBlockInitializer.ICE_PRESSURE_PLATE.get(), new Item.Properties()));
 
                 // Packed Ice
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_stairs"), new BlockItem(ModBlockInitializer.PACKED_ICE_STAIRS.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_slab"), new BlockItem(ModBlockInitializer.PACKED_ICE_SLAB.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_wall"), new BlockItem(ModBlockInitializer.PACKED_ICE_WALL.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_bricks"), new BlockItem(ModBlockInitializer.PACKED_ICE_BRICKS.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "packed_ice_pressure_plate"), new BlockItem(ModBlockInitializer.PACKED_ICE_PRESSURE_PLATE.get(), new Item.Properties()));
 
                 // Blue Ice
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_stairs"), new BlockItem(ModBlockInitializer.BLUE_ICE_STAIRS.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_slab"), new BlockItem(ModBlockInitializer.BLUE_ICE_SLAB.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_wall"), new BlockItem(ModBlockInitializer.BLUE_ICE_WALL.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_bricks"), new BlockItem(ModBlockInitializer.BLUE_ICE_BRICKS.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "blue_ice_pressure_plate"), new BlockItem(ModBlockInitializer.BLUE_ICE_PRESSURE_PLATE.get(), new Item.Properties()));
             });
         }
 
@@ -152,18 +167,21 @@ public class Main
                 entries.putAfter(new ItemStack(ModItems.ICE_STAIRS), new ItemStack(ModItems.ICE_SLAB), visibility);
                 entries.putAfter(new ItemStack(ModItems.ICE_SLAB), new ItemStack(ModItems.ICE_WALL), visibility);
                 entries.putAfter(new ItemStack(ModItems.ICE_WALL), new ItemStack(ModItems.ICE_BRICKS), visibility);
+                entries.putAfter(new ItemStack(ModItems.ICE_BRICKS), new ItemStack(ModItems.ICE_PRESSURE_PLATE), visibility);
 
                 // Packed Ice
                 entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.PACKED_ICE_STAIRS), visibility);
                 entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.PACKED_ICE_SLAB), visibility);
                 entries.putAfter(new ItemStack(ModItems.PACKED_ICE_SLAB), new ItemStack(ModItems.PACKED_ICE_WALL), visibility);
                 entries.putAfter(new ItemStack(ModItems.PACKED_ICE_WALL), new ItemStack(ModItems.PACKED_ICE_BRICKS), visibility);
+                entries.putAfter(new ItemStack(ModItems.PACKED_ICE_BRICKS), new ItemStack(ModItems.PACKED_ICE_PRESSURE_PLATE), visibility);
 
                 // Blue Ice
                 entries.putAfter(new ItemStack(Items.BLUE_ICE), new ItemStack(ModItems.BLUE_ICE_STAIRS), visibility);
                 entries.putAfter(new ItemStack(Items.BLUE_ICE), new ItemStack(ModItems.BLUE_ICE_SLAB), visibility);
                 entries.putAfter(new ItemStack(ModItems.BLUE_ICE_SLAB), new ItemStack(ModItems.BLUE_ICE_WALL), visibility);
                 entries.putAfter(new ItemStack(ModItems.BLUE_ICE_WALL), new ItemStack(ModItems.BLUE_ICE_BRICKS), visibility);
+                entries.putAfter(new ItemStack(ModItems.BLUE_ICE_BRICKS), new ItemStack(ModItems.BLUE_ICE_PRESSURE_PLATE), visibility);
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
 
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {

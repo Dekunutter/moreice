@@ -11,6 +11,9 @@
   "block.moreice.ice_bricks": "Ice Bricks",
   "block.moreice.packed_ice_bricks": "Packed Ice Bricks",
   "block.moreice.blue_ice_bricks": "Blue Ice Bricks",
+  "block.moreice.ice_pressure_plate": "Ice Pressure Plate",
+  "block.moreice.packed_ice_pressure_plate": "Packed Ice Pressure Plate",
+  "block.moreice.blue_ice_pressure_plate": "Blue Ice Pressure Plate",
   "item.moreice.ice_stairs": "Ice Stairs",
   "item.moreice.packed_ice_stairs": "Packed Ice Stairs",
   "item.moreice.blue_ice_stairs": "Blue Ice Stairs",
@@ -23,5 +26,8 @@
   "item.moreice.ice_bricks": "Ice Bricks",
   "item.moreice.packed_ice_bricks": "Packed Ice Bricks",
   "item.moreice.blue_ice_bricks": "Blue Ice Bricks",
+  "item.moreice.ice_pressure_plate": "Ice Pressure Plate",
+  "item.moreice.packed_ice_pressure_plate": "Packed Ice Pressure Plate",
+  "item.moreice.blue_ice_pressure_plate": "Blue Ice Pressure Plate",
   "tab.mod": "More Ice"
 }

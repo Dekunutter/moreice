@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "moreice:block/blue_ice_pressure_plate"
+    },
+    "powered=true": {
+      "model": "moreice:block/blue_ice_pressure_plate_down"
+    }
+  }
+}
