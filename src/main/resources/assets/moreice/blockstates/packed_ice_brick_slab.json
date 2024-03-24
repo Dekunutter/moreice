@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "moreice:block/packed_ice_brick_slab"
+    },
+    "type=double": {
+      "model": "moreice:block/packed_ice_bricks"
+    },
+    "type=top": {
+      "model": "moreice:block/packed_ice_brick_slab_top"
+    }
+  }
+}

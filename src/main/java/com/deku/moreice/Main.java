@@ -133,6 +133,7 @@ public class Main
                 registrar.register(new ResourceLocation(MOD_ID, "ice_slab"), new BlockItem(ModBlockInitializer.ICE_SLAB.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "ice_wall"), new BlockItem(ModBlockInitializer.ICE_WALL.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "ice_bricks"), new BlockItem(ModBlockInitializer.ICE_BRICKS.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "ice_brick_slab"), new BlockItem(ModBlockInitializer.ICE_BRICK_SLAB.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "ice_pressure_plate"), new BlockItem(ModBlockInitializer.ICE_PRESSURE_PLATE.get(), new Item.Properties()));
 
                 // Packed Ice
@@ -140,6 +141,7 @@ public class Main
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_slab"), new BlockItem(ModBlockInitializer.PACKED_ICE_SLAB.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_wall"), new BlockItem(ModBlockInitializer.PACKED_ICE_WALL.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_bricks"), new BlockItem(ModBlockInitializer.PACKED_ICE_BRICKS.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "packed_ice_brick_slab"), new BlockItem(ModBlockInitializer.PACKED_ICE_BRICK_SLAB.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_pressure_plate"), new BlockItem(ModBlockInitializer.PACKED_ICE_PRESSURE_PLATE.get(), new Item.Properties()));
 
                 // Blue Ice
@@ -147,6 +149,7 @@ public class Main
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_slab"), new BlockItem(ModBlockInitializer.BLUE_ICE_SLAB.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_wall"), new BlockItem(ModBlockInitializer.BLUE_ICE_WALL.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_bricks"), new BlockItem(ModBlockInitializer.BLUE_ICE_BRICKS.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "blue_ice_brick_slab"), new BlockItem(ModBlockInitializer.BLUE_ICE_BRICK_SLAB.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_pressure_plate"), new BlockItem(ModBlockInitializer.BLUE_ICE_PRESSURE_PLATE.get(), new Item.Properties()));
             });
         }
@@ -167,13 +170,16 @@ public class Main
                 entries.putAfter(new ItemStack(ModItems.ICE_STAIRS), new ItemStack(ModItems.ICE_SLAB), visibility);
                 entries.putAfter(new ItemStack(ModItems.ICE_SLAB), new ItemStack(ModItems.ICE_WALL), visibility);
                 entries.putAfter(new ItemStack(ModItems.ICE_WALL), new ItemStack(ModItems.ICE_BRICKS), visibility);
-                entries.putAfter(new ItemStack(ModItems.ICE_BRICKS), new ItemStack(ModItems.ICE_PRESSURE_PLATE), visibility);
+                entries.putAfter(new ItemStack(ModItems.ICE_BRICKS), new ItemStack(ModItems.ICE_BRICK_SLAB), visibility);
+                entries.putAfter(new ItemStack(ModItems.ICE_BRICK_SLAB), new ItemStack(ModItems.ICE_PRESSURE_PLATE), visibility);
 
                 // Packed Ice
                 entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.PACKED_ICE_STAIRS), visibility);
                 entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.PACKED_ICE_SLAB), visibility);
                 entries.putAfter(new ItemStack(ModItems.PACKED_ICE_SLAB), new ItemStack(ModItems.PACKED_ICE_WALL), visibility);
                 entries.putAfter(new ItemStack(ModItems.PACKED_ICE_WALL), new ItemStack(ModItems.PACKED_ICE_BRICKS), visibility);
+                entries.putAfter(new ItemStack(ModItems.PACKED_ICE_BRICKS), new ItemStack(ModItems.PACKED_ICE_BRICK_SLAB), visibility);
+                entries.putAfter(new ItemStack(ModItems.PACKED_ICE_BRICK_SLAB), new ItemStack(ModItems.PACKED_ICE_PRESSURE_PLATE), visibility);
                 entries.putAfter(new ItemStack(ModItems.PACKED_ICE_BRICKS), new ItemStack(ModItems.PACKED_ICE_PRESSURE_PLATE), visibility);
 
                 // Blue Ice
@@ -181,6 +187,8 @@ public class Main
                 entries.putAfter(new ItemStack(Items.BLUE_ICE), new ItemStack(ModItems.BLUE_ICE_SLAB), visibility);
                 entries.putAfter(new ItemStack(ModItems.BLUE_ICE_SLAB), new ItemStack(ModItems.BLUE_ICE_WALL), visibility);
                 entries.putAfter(new ItemStack(ModItems.BLUE_ICE_WALL), new ItemStack(ModItems.BLUE_ICE_BRICKS), visibility);
+                entries.putAfter(new ItemStack(ModItems.BLUE_ICE_BRICKS), new ItemStack(ModItems.BLUE_ICE_BRICK_SLAB), visibility);
+                entries.putAfter(new ItemStack(ModItems.BLUE_ICE_BRICK_SLAB), new ItemStack(ModItems.BLUE_ICE_PRESSURE_PLATE), visibility);
                 entries.putAfter(new ItemStack(ModItems.BLUE_ICE_BRICKS), new ItemStack(ModItems.BLUE_ICE_PRESSURE_PLATE), visibility);
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
 
