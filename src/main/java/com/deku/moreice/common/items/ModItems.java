@@ -62,4 +62,8 @@ public class ModItems {
 
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_pressure_plate")
     public static BlockItem BLUE_ICE_PRESSURE_PLATE;
+
+    // MISC
+    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":freezer")
+    public static BlockItem FREEZER;
 }

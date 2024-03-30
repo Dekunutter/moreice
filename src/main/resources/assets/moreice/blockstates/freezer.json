@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=east,is_cooling=false": {
+      "model": "moreice:block/freezer",
+      "y": 90
+    },
+    "facing=east,is_cooling=true": {
+      "model": "moreice:block/freezer",
+      "y": 90
+    },
+    "facing=north,is_cooling=false": {
+      "model": "moreice:block/freezer"
+    },
+    "facing=north,is_cooling=true": {
+      "model": "moreice:block/freezer"
+    },
+    "facing=south,is_cooling=false": {
+      "model": "moreice:block/freezer",
+      "y": 180
+    },
+    "facing=south,is_cooling=true": {
+      "model": "moreice:block/freezer",
+      "y": 180
+    },
+    "facing=west,is_cooling=false": {
+      "model": "moreice:block/freezer",
+      "y": 270
+    },
+    "facing=west,is_cooling=true": {
+      "model": "moreice:block/freezer",
+      "y": 270
+    }
+  }
+}

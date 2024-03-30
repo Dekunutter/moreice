@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "eastwardjourneys:packed_ice_stairs"
+          "name": "moreice:packed_ice_stairs"
         }
       ],
       "conditions": [

@@ -36,4 +36,6 @@ public class ModBlockInitializer {
     public static final RegistryObject<Block> BLUE_ICE_BRICK_SLAB = BLOCKS.register("blue_ice_brick_slab", BlueIceBrickSlab::new);
     public static final RegistryObject<Block> BLUE_ICE_PRESSURE_PLATE = BLOCKS.register("blue_ice_pressure_plate", BlueIcePressurePlate::new);
 
+    // MISC
+    public static final RegistryObject<Block> FREEZER = BLOCKS.register("freezer", Freezer::new);
 }

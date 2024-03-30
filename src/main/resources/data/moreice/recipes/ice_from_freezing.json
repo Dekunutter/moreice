@@ -1,0 +1,11 @@
+{
+  "type": "moreice:freezing",
+  "count": 4,
+  "category": "blocks",
+  "cookingTime": 600,
+  "experience": 0.1,
+  "ingredient": {
+    "tag": "moreice:freezes_into_ice"
+  },
+  "result": "minecraft:ice"
+}

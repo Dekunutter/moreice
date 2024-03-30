@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "eastwardjourneys:blue_ice_stairs"
+          "name": "moreice:blue_ice_stairs"
         }
       ],
       "conditions": [

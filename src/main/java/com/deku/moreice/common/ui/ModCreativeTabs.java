@@ -37,5 +37,8 @@ public class ModCreativeTabs {
         output.accept(ModItems.BLUE_ICE_BRICKS);
         output.accept(ModItems.BLUE_ICE_BRICK_SLAB);
         output.accept(ModItems.BLUE_ICE_PRESSURE_PLATE);
+
+        //MISC
+        output.accept(ModItems.FREEZER);
     }).build());
 }

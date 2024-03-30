@@ -2,19 +2,26 @@ package com.deku.moreice;
 
 import com.deku.eastwardjourneys.utils.LogTweaker;
 import com.deku.eastwardjourneys.utils.ModConfiguration;
+import com.deku.moreice.client.ClientRegistrar;
+import com.deku.moreice.common.blockEntities.ModBlockEntityType;
 import com.deku.moreice.common.blocks.ModBlockInitializer;
 import com.deku.moreice.common.blocks.ModBlockSetType;
 import com.deku.moreice.common.items.ModItems;
 import com.deku.moreice.common.ui.ModCreativeTabs;
+import com.deku.moreice.world.inventory.ModMenuType;
+import com.deku.moreice.world.item.crafting.ModRecipeSerializer;
+import com.deku.moreice.world.item.crafting.ModRecipeType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.MutableHashedLinkedMap;
 import net.minecraftforge.event.*;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -68,6 +75,14 @@ public class Main
 
         // Block logic
         ModBlockInitializer.BLOCKS.register(eventBus);
+        ModBlockEntityType.BLOCK_ENTITIES.register(eventBus);
+
+        // Menus
+        ModMenuType.MENU_TYPES.register(eventBus);
+
+        // Recipes
+        ModRecipeType.RECIPE_TYPES.register(eventBus);
+        ModRecipeSerializer.RECIPE_SERIALIZERS.register(eventBus);
 
         // Creative Mode Tabs
         ModCreativeTabs.CREATIVE_MOD_TABS.register(eventBus);
@@ -79,9 +94,13 @@ public class Main
         // Register the processIMC method for modloading
         eventBus.addListener(this::processIMC);
 
+        ClientRegistrar clientRegistrar = new ClientRegistrar(eventBus);
+
         // Register ourselves for server and other game events we are interested in
         IEventBus forgeEventBus = MinecraftForge.EVENT_BUS;
         forgeEventBus.register(this);
+
+        DistExecutor.safeRunWhenOn(Dist.CLIENT, () -> clientRegistrar::registerClientOnlyEvents);
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -151,6 +170,9 @@ public class Main
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_bricks"), new BlockItem(ModBlockInitializer.BLUE_ICE_BRICKS.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_brick_slab"), new BlockItem(ModBlockInitializer.BLUE_ICE_BRICK_SLAB.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_pressure_plate"), new BlockItem(ModBlockInitializer.BLUE_ICE_PRESSURE_PLATE.get(), new Item.Properties()));
+
+                // Misc
+                registrar.register(new ResourceLocation(MOD_ID, "freezer"), new BlockItem(ModBlockInitializer.FREEZER.get(), new Item.Properties()));
             });
         }
 
@@ -193,7 +215,7 @@ public class Main
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
 
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-
+                entries.putAfter(new ItemStack(Items.FURNACE), new ItemStack(ModItems.FREEZER), visibility);
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
 
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
