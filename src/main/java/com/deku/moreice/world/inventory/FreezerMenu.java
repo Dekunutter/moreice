@@ -52,27 +52,28 @@ public class FreezerMenu extends AbstractContainerMenu {
 
     public FreezerMenu(int containerId, Inventory inventory, Container entity, ContainerData containerData) {
         super(ModMenuType.FREEZER.get(), containerId);
-        this.recipeType = ModRecipeType.FREEZING.get();
+        recipeType = ModRecipeType.FREEZING.get();
         checkContainerSize(entity, 3);
         checkContainerDataCount(containerData, 4);
-        this.container = entity;
+        container = entity;
+        container.startOpen(inventory.player);
         data = containerData;
         level = inventory.player.level();
 
-        this.addSlot(new Slot(container, 0, 56, 17));
+        addSlot(new Slot(container, 0, 56, 17));
         addSlot(new FreezerFuelSlot(this, container, 1, 56, 53));
         addSlot(new FreezerResultSlot(inventory.player, container, RESULT_SLOT_INDEX, 116, 35));
 
         // inventory slots
-        for(int i = 0; i < 3; ++i) {
-            for(int j = 0; j < 9; ++j) {
-                this.addSlot(new Slot(inventory, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+        for(int x = 0; x < 3; ++x) {
+            for(int y = 0; y < 9; ++y) {
+                addSlot(new Slot(inventory, y + x * 9 + 9, 8 + y * 18, 84 + x * 18));
             }
         }
 
         // toolbar slots
-        for(int k = 0; k < 9; ++k) {
-            this.addSlot(new Slot(inventory, k, 8 + k * 18, 142));
+        for(int x = 0; x < 9; ++x) {
+            addSlot(new Slot(inventory, x, 8 + x * 18, 142));
         }
 
         addDataSlots(containerData);
@@ -168,5 +169,14 @@ public class FreezerMenu extends AbstractContainerMenu {
 
     public boolean isCooling() {
         return data.get(0) > 0;
+    }
+
+    public void removed(Player player) {
+        super.removed(player);
+        container.stopOpen(player);
+    }
+
+    public Container getContainer() {
+        return container;
     }
 }

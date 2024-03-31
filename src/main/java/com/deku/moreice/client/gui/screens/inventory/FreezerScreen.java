@@ -14,7 +14,7 @@ import static com.deku.moreice.Main.MOD_ID;
 
 @OnlyIn(Dist.CLIENT)
 public class FreezerScreen extends AbstractContainerScreen<FreezerMenu> {
-    private static final ResourceLocation PROGRESS_SPRITE = new ResourceLocation("container/furnace/lit_progress");
+    private static final ResourceLocation PROGRESS_SPRITE = new ResourceLocation(MOD_ID,"container/freezer/cooling_progress");
     private static final ResourceLocation FREEZING_PROGRESS_SPRITE = new ResourceLocation(MOD_ID, "container/freezer/freezing_progress");
     private static final ResourceLocation TEXTURE = new ResourceLocation(MOD_ID, "textures/gui/container/freezer.png");
 
@@ -41,5 +41,20 @@ public class FreezerScreen extends AbstractContainerScreen<FreezerMenu> {
         int i1 = 24;
         int j1 = Mth.ceil(menu.getFreezingProgress() * 24.0F);
         graphics.blitSprite(FREEZING_PROGRESS_SPRITE, 24, 16, 0, 0, i + 79, j + 34, j1, 16);
+    }
+
+    public boolean isPauseScreen() {
+        return false;
+    }
+
+    public void removed() {
+        if (minecraft.player != null) {
+            menu.removed(minecraft.player);
+        }
+    }
+
+    public void onClose() {
+        minecraft.player.closeContainer();
+        super.onClose();
     }
 }

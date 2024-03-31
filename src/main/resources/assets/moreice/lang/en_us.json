@@ -36,5 +36,6 @@
   "item.moreice.ice_pressure_plate": "Ice Pressure Plate",
   "item.moreice.packed_ice_pressure_plate": "Packed Ice Pressure Plate",
   "item.moreice.blue_ice_pressure_plate": "Blue Ice Pressure Plate",
+  "container.moreice.freezer": "Freezer",
   "tab.mod": "More Ice"
 }

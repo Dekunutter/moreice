@@ -6,6 +6,7 @@ import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -16,13 +17,17 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -31,15 +36,16 @@ import org.jetbrains.annotations.Nullable;
 
 import static com.deku.moreice.common.blocks.ModBlockStateProperties.COOLING;
 import static com.deku.moreice.common.blocks.ModBlockStateProperties.FACING;
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
-public class Freezer extends BaseEntityBlock {
+public class Freezer extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final MapCodec<Freezer> CODEC = simpleCodec(Freezer::new);
 
     public static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 14, 15);
 
     public Freezer() {
         super(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(4.5F));
-        registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(COOLING, Boolean.valueOf(false)));
+        registerDefaultState(getStateDefinition().any().setValue(FACING, Direction.NORTH).setValue(COOLING, Boolean.valueOf(false)).setValue(WATERLOGGED, false));
     }
 
     public Freezer(BlockBehaviour.Properties properties) {
@@ -84,7 +90,8 @@ public class Freezer extends BaseEntityBlock {
     }
 
     public BlockState getStateForPlacement(BlockPlaceContext placeContext) {
-        return defaultBlockState().setValue(FACING, placeContext.getHorizontalDirection().getOpposite());
+        FluidState fluidState = placeContext.getLevel().getFluidState(placeContext.getClickedPos());
+        return defaultBlockState().setValue(FACING, placeContext.getHorizontalDirection().getOpposite()).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
     }
 
     public void setPlacedBy(Level level, BlockPos position, BlockState state, LivingEntity entity, ItemStack itemStack) {
@@ -136,7 +143,23 @@ public class Freezer extends BaseEntityBlock {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> stateDefinition) {
-        stateDefinition.add(FACING, COOLING);
+        stateDefinition.add(FACING, COOLING, WATERLOGGED);
+    }
+
+    public FluidState getFluidState(BlockState state) {
+        return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+    }
+
+    public BlockState updateShape(BlockState state, Direction direction, BlockState otherState, LevelAccessor levelAccessor, BlockPos position, BlockPos otherPosition) {
+        if (state.getValue(WATERLOGGED)) {
+            levelAccessor.scheduleTick(position, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
+        }
+
+        return super.updateShape(state, direction, otherState, levelAccessor, position, otherPosition);
+    }
+
+    public boolean isPathfindable(BlockState state, BlockGetter blockGetter, BlockPos position, PathComputationType pathingType) {
+        return false;
     }
 
     @Nullable
@@ -156,7 +179,15 @@ public class Freezer extends BaseEntityBlock {
      */
     @javax.annotation.Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> entityType) {
-        return level.isClientSide ? null : createTickerHelper(entityType, ModBlockEntityType.FREEZER_BLOCK_ENTITY.get(), (serverLevel, position, blockState, entity) -> FreezerBlockEntity.serverTick(serverLevel, position, blockState, entity));
+        return level.isClientSide ? createTickerHelper(entityType, ModBlockEntityType.FREEZER_BLOCK_ENTITY.get(), (clientLevel, position, blockState, entity) -> FreezerBlockEntity.clientTick(clientLevel, position, blockState, entity)) : createTickerHelper(entityType, ModBlockEntityType.FREEZER_BLOCK_ENTITY.get(), (serverLevel, position, blockState, entity) -> FreezerBlockEntity.serverTick(serverLevel, position, blockState, entity));
+    }
+
+    public void tick(BlockState state, ServerLevel level, BlockPos position, RandomSource random) {
+        BlockEntity blockentity = level.getBlockEntity(position);
+        if (blockentity instanceof FreezerBlockEntity) {
+            ((FreezerBlockEntity) blockentity).recheckOpen();
+        }
+
     }
 
 //

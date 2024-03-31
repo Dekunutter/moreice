@@ -15,8 +15,12 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
+import net.minecraft.world.CompoundContainer;
 import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
@@ -24,20 +28,20 @@ import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.player.StackedContents;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.inventory.RecipeCraftingHolder;
-import net.minecraft.world.inventory.StackedContentsCompatible;
+import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.entity.BaseContainerBlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.ChestBlock;
+import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -46,7 +50,8 @@ import java.util.Map;
 
 import static com.deku.moreice.Main.MOD_ID;
 
-public class FreezerBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeCraftingHolder, StackedContentsCompatible {
+public class FreezerBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeCraftingHolder, StackedContentsCompatible, LidBlockEntity {
+    private static final int EVENT_SET_OPEN_COUNT = 1;
     private NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
     private int coolingTime;
     private int coolingDuration;
@@ -94,6 +99,31 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
     private final Object2IntOpenHashMap<ResourceLocation> recipesUsed = new Object2IntOpenHashMap<>();
     private final RecipeType<?> recipeType;
     private final RecipeManager.CachedCheck<Container, ? extends AbstractCookingRecipe> quickCheck;
+
+    private final ContainerOpenersCounter opens = new ContainerOpenersCounter() {
+        protected void onOpen(Level level, BlockPos position, BlockState state) {
+            FreezerBlockEntity.playSound(level, position, state, SoundEvents.IRON_DOOR_OPEN);
+        }
+
+        protected void onClose(Level level, BlockPos position, BlockState state) {
+            FreezerBlockEntity.playSound(level, position, state, SoundEvents.IRON_DOOR_CLOSE);
+        }
+
+        protected void openerCountChanged(Level level, BlockPos position, BlockState state, int eventId, int eventValue) {
+            signalOpenCount(level, position, state, EVENT_SET_OPEN_COUNT, eventValue);
+        }
+
+        protected boolean isOwnContainer(Player player) {
+            if (!(player.containerMenu instanceof FreezerMenu)) {
+                return false;
+            } else {
+                Container container = ((FreezerMenu) player.containerMenu).getContainer();
+                return container == FreezerBlockEntity.this || container instanceof CompoundContainer && ((CompoundContainer)container).contains(FreezerBlockEntity.this);
+            }
+        }
+    };
+
+    private final ChestLidController lidController = new ChestLidController();
 
     public FreezerBlockEntity(BlockPos position, BlockState state) {
         this(ModBlockEntityType.FREEZER_BLOCK_ENTITY.get(), position, state, ModRecipeType.FREEZING.get());
@@ -301,6 +331,10 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
 
     }
 
+    public static void clientTick(Level level, BlockPos position, BlockState state, FreezerBlockEntity blockEntity) {
+        lidAnimateTick(level, position, state, blockEntity);
+    }
+
     /**
      * Tick down the remaining cooling time. Process any completed freezes
      *
@@ -499,5 +533,66 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
     private static void add(Map<Item, Integer> fuelMap, ItemLike fuelItem, int coolingDuration) {
         Item item = fuelItem.asItem();
         fuelMap.put(item, coolingDuration);
+    }
+
+    public void startOpen(Player player) {
+        if (!remove && !player.isSpectator()) {
+            opens.incrementOpeners(player, getLevel(), getBlockPos(), getBlockState());
+        }
+    }
+
+    public void stopOpen(Player player) {
+        if (!remove && !player.isSpectator()) {
+            opens.decrementOpeners(player, getLevel(), getBlockPos(), getBlockState());
+        }
+    }
+
+    public static int getOpenCount(BlockGetter blockGetter, BlockPos position) {
+        BlockState blockstate = blockGetter.getBlockState(position);
+        if (blockstate.hasBlockEntity()) {
+            BlockEntity blockEntity = blockGetter.getBlockEntity(position);
+            if (blockEntity instanceof FreezerBlockEntity) {
+                return ((FreezerBlockEntity) blockEntity).opens.getOpenerCount();
+            }
+        }
+
+        return 0;
+    }
+
+    protected static void playSound(Level level, BlockPos position, BlockState state, SoundEvent soundEvent) {
+        double stepX = (double) position.getX() + 0.5D;
+        double stepY = (double) position.getY() + 0.5D;
+        double stepZ = (double) position.getZ() + 0.5D;
+
+        level.playSound((Player) null, stepX, stepY, stepZ, soundEvent, SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
+    }
+
+    public void recheckOpen() {
+        if (!remove) {
+            opens.recheckOpeners(getLevel(), getBlockPos(), getBlockState());
+        }
+
+    }
+
+    protected void signalOpenCount(Level level, BlockPos position, BlockState state, int eventId, int eventValue) {
+        Block block = state.getBlock();
+        level.blockEvent(position, block, eventId, eventValue);
+    }
+
+    public static void lidAnimateTick(Level level, BlockPos position, BlockState state, FreezerBlockEntity entity) {
+        entity.lidController.tickLid();
+    }
+
+    public boolean triggerEvent(int eventId, int eventValue) {
+        if (eventId == 1) {
+            lidController.shouldBeOpen(eventValue > 0);
+            return true;
+        } else {
+            return super.triggerEvent(eventId, eventValue);
+        }
+    }
+
+    public float getOpenNess(float value) {
+        return lidController.getOpenness(value);
     }
 }
