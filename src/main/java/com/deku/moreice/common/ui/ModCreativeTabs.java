@@ -21,6 +21,7 @@ public class ModCreativeTabs {
         output.accept(ModItems.ICE_BRICKS);
         output.accept(ModItems.ICE_BRICK_SLAB);
         output.accept(ModItems.ICE_BRICK_WALL);
+        output.accept(ModItems.ICE_BRICK_STAIRS);
         output.accept(ModItems.ICE_PRESSURE_PLATE);
 
         // PACKED ICE
@@ -30,6 +31,7 @@ public class ModCreativeTabs {
         output.accept(ModItems.PACKED_ICE_BRICKS);
         output.accept(ModItems.PACKED_ICE_BRICK_SLAB);
         output.accept(ModItems.PACKED_ICE_BRICK_WALL);
+        output.accept(ModItems.PACKED_ICE_BRICK_STAIRS);
         output.accept(ModItems.PACKED_ICE_PRESSURE_PLATE);
 
         // BLUE ICE
@@ -39,6 +41,7 @@ public class ModCreativeTabs {
         output.accept(ModItems.BLUE_ICE_BRICKS);
         output.accept(ModItems.BLUE_ICE_BRICK_SLAB);
         output.accept(ModItems.BLUE_ICE_BRICK_WALL);
+        output.accept(ModItems.BLUE_ICE_BRICK_STAIRS);
         output.accept(ModItems.BLUE_ICE_PRESSURE_PLATE);
 
         //MISC
