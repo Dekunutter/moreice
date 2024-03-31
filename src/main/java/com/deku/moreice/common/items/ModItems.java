@@ -22,6 +22,9 @@ public class ModItems {
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_brick_slab")
     public static BlockItem ICE_BRICK_SLAB;
 
+    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_brick_wall")
+    public static BlockItem ICE_BRICK_WALL;
+
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_pressure_plate")
     public static BlockItem ICE_PRESSURE_PLATE;
 
@@ -41,6 +44,9 @@ public class ModItems {
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_brick_slab")
     public static BlockItem PACKED_ICE_BRICK_SLAB;
 
+    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_brick_wall")
+    public static BlockItem PACKED_ICE_BRICK_WALL;
+
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_pressure_plate")
     public static BlockItem PACKED_ICE_PRESSURE_PLATE;
 
@@ -59,6 +65,9 @@ public class ModItems {
 
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_brick_slab")
     public static BlockItem BLUE_ICE_BRICK_SLAB;
+
+    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_brick_wall")
+    public static BlockItem BLUE_ICE_BRICK_WALL;
 
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_pressure_plate")
     public static BlockItem BLUE_ICE_PRESSURE_PLATE;

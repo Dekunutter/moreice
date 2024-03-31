@@ -3,6 +3,9 @@
   "values": [
     "moreice:ice_wall",
     "moreice:packed_ice_wall",
-    "moreice:blue_ice_wall"
+    "moreice:blue_ice_wall",
+    "moreice:ice_brick_wall",
+    "moreice:packed_ice_brick_wall",
+    "moreice:blue_ice_brick_wall"
   ]
 }

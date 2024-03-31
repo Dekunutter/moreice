@@ -1,7 +1,6 @@
 {
-  "render_type": "minecraft:translucent",
   "parent": "minecraft:block/template_wall_side_tall",
   "textures": {
-    "wall": "minecraft:block/ice"
+    "wall": "moreice:block/blue_ice_bricks"
   }
 }
