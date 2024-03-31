@@ -21,6 +21,7 @@ public class ModBlockInitializer {
     public static final RegistryObject<Block> ICE_BRICK_WALL = BLOCKS.register("ice_brick_wall", IceBrickWall::new);
     public static final RegistryObject<Block> ICE_BRICK_STAIRS = BLOCKS.register("ice_brick_stairs", IceBrickStairs::new);
     public static final RegistryObject<Block> ICE_PRESSURE_PLATE = BLOCKS.register("ice_pressure_plate", IcePressurePlate::new);
+    public static final RegistryObject<Block> ICE_BUTTON = BLOCKS.register("ice_button", IceButton::new);
 
     // PACKED ICE
     public static final RegistryObject<Block> PACKED_ICE_STAIRS = BLOCKS.register("packed_ice_stairs", PackedIceStairs::new);
@@ -31,6 +32,7 @@ public class ModBlockInitializer {
     public static final RegistryObject<Block> PACKED_ICE_BRICK_WALL = BLOCKS.register("packed_ice_brick_wall", PackedIceBrickWall::new);
     public static final RegistryObject<Block> PACKED_ICE_BRICK_STAIRS = BLOCKS.register("packed_ice_brick_stairs", PackedIceBrickStairs::new);
     public static final RegistryObject<Block> PACKED_ICE_PRESSURE_PLATE = BLOCKS.register("packed_ice_pressure_plate", PackedIcePressurePlate::new);
+    public static final RegistryObject<Block> PACKED_ICE_BUTTON = BLOCKS.register("packed_ice_button", PackedIceButton::new);
 
     // BLUE ICE
     public static final RegistryObject<Block> BLUE_ICE_STAIRS = BLOCKS.register("blue_ice_stairs", BlueIceStairs::new);
@@ -41,6 +43,7 @@ public class ModBlockInitializer {
     public static final RegistryObject<Block> BLUE_ICE_BRICK_WALL = BLOCKS.register("blue_ice_brick_wall", BlueIceBrickWall::new);
     public static final RegistryObject<Block> BLUE_ICE_BRICK_STAIRS = BLOCKS.register("blue_ice_brick_stairs", BlueIceBrickStairs::new);
     public static final RegistryObject<Block> BLUE_ICE_PRESSURE_PLATE = BLOCKS.register("blue_ice_pressure_plate", BlueIcePressurePlate::new);
+    public static final RegistryObject<Block> BLUE_ICE_BUTTON = BLOCKS.register("blue_ice_button", BlueIceButton::new);
 
     // MISC
     public static final RegistryObject<Block> FREEZER = BLOCKS.register("freezer", Freezer::new);

@@ -156,6 +156,7 @@ public class Main
                 registrar.register(new ResourceLocation(MOD_ID, "ice_brick_wall"), new BlockItem(ModBlockInitializer.ICE_BRICK_WALL.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "ice_brick_stairs"), new BlockItem(ModBlockInitializer.ICE_BRICK_STAIRS.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "ice_pressure_plate"), new BlockItem(ModBlockInitializer.ICE_PRESSURE_PLATE.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "ice_button"), new BlockItem(ModBlockInitializer.ICE_BUTTON.get(), new Item.Properties()));
 
                 // Packed Ice
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_stairs"), new BlockItem(ModBlockInitializer.PACKED_ICE_STAIRS.get(), new Item.Properties()));
@@ -166,6 +167,7 @@ public class Main
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_brick_wall"), new BlockItem(ModBlockInitializer.PACKED_ICE_BRICK_WALL.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_brick_stairs"), new BlockItem(ModBlockInitializer.PACKED_ICE_BRICK_STAIRS.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "packed_ice_pressure_plate"), new BlockItem(ModBlockInitializer.PACKED_ICE_PRESSURE_PLATE.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "packed_ice_button"), new BlockItem(ModBlockInitializer.PACKED_ICE_BUTTON.get(), new Item.Properties()));
 
                 // Blue Ice
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_stairs"), new BlockItem(ModBlockInitializer.BLUE_ICE_STAIRS.get(), new Item.Properties()));
@@ -176,6 +178,7 @@ public class Main
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_brick_wall"), new BlockItem(ModBlockInitializer.BLUE_ICE_BRICK_WALL.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_brick_stairs"), new BlockItem(ModBlockInitializer.BLUE_ICE_BRICK_STAIRS.get(), new Item.Properties()));
                 registrar.register(new ResourceLocation(MOD_ID, "blue_ice_pressure_plate"), new BlockItem(ModBlockInitializer.BLUE_ICE_PRESSURE_PLATE.get(), new Item.Properties()));
+                registrar.register(new ResourceLocation(MOD_ID, "blue_ice_button"), new BlockItem(ModBlockInitializer.BLUE_ICE_BUTTON.get(), new Item.Properties()));
 
                 // Misc
                 registrar.register(new ResourceLocation(MOD_ID, "freezer"), new BlockItem(ModBlockInitializer.FREEZER.get(), new Item.Properties()));
@@ -202,6 +205,7 @@ public class Main
                 entries.putAfter(new ItemStack(ModItems.ICE_BRICK_SLAB), new ItemStack(ModItems.ICE_BRICK_WALL), visibility);
                 entries.putAfter(new ItemStack(ModItems.ICE_BRICK_WALL), new ItemStack(ModItems.ICE_BRICK_STAIRS), visibility);
                 entries.putAfter(new ItemStack(ModItems.ICE_BRICK_STAIRS), new ItemStack(ModItems.ICE_PRESSURE_PLATE), visibility);
+                entries.putAfter(new ItemStack(ModItems.ICE_PRESSURE_PLATE), new ItemStack(ModItems.ICE_BUTTON), visibility);
 
                 // Packed Ice
                 entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.PACKED_ICE_STAIRS), visibility);
@@ -212,6 +216,7 @@ public class Main
                 entries.putAfter(new ItemStack(ModItems.PACKED_ICE_BRICK_SLAB), new ItemStack(ModItems.PACKED_ICE_BRICK_WALL), visibility);
                 entries.putAfter(new ItemStack(ModItems.PACKED_ICE_BRICK_WALL), new ItemStack(ModItems.PACKED_ICE_BRICK_STAIRS), visibility);
                 entries.putAfter(new ItemStack(ModItems.PACKED_ICE_BRICK_STAIRS), new ItemStack(ModItems.PACKED_ICE_PRESSURE_PLATE), visibility);
+                entries.putAfter(new ItemStack(ModItems.PACKED_ICE_PRESSURE_PLATE), new ItemStack(ModItems.PACKED_ICE_BUTTON), visibility);
 
                 // Blue Ice
                 entries.putAfter(new ItemStack(Items.BLUE_ICE), new ItemStack(ModItems.BLUE_ICE_STAIRS), visibility);
@@ -221,13 +226,23 @@ public class Main
                 entries.putAfter(new ItemStack(ModItems.BLUE_ICE_BRICKS), new ItemStack(ModItems.BLUE_ICE_BRICK_SLAB), visibility);
                 entries.putAfter(new ItemStack(ModItems.BLUE_ICE_BRICK_SLAB), new ItemStack(ModItems.BLUE_ICE_BRICK_WALL), visibility);
                 entries.putAfter(new ItemStack(ModItems.BLUE_ICE_BRICK_WALL), new ItemStack(ModItems.BLUE_ICE_BRICK_STAIRS), visibility);
-                entries.putAfter(new ItemStack(ModItems.BLUE_ICE_BRICK_STAIRS), new ItemStack(ModItems.BLUE_ICE_PRESSURE_PLATE), visibility);
+
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
 
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
                 entries.putAfter(new ItemStack(Items.FURNACE), new ItemStack(ModItems.FREEZER), visibility);
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.REDSTONE_BLOCKS) {
+                // Ice
+                entries.putAfter(new ItemStack(Items.POLISHED_BLACKSTONE_PRESSURE_PLATE), new ItemStack(ModItems.ICE_PRESSURE_PLATE), visibility);
+                entries.putAfter(new ItemStack(Items.POLISHED_BLACKSTONE_BUTTON), new ItemStack(ModItems.ICE_BUTTON), visibility);
 
+                // Packed Ice
+                entries.putAfter(new ItemStack(ModItems.ICE_PRESSURE_PLATE), new ItemStack(ModItems.PACKED_ICE_PRESSURE_PLATE), visibility);
+                entries.putAfter(new ItemStack(ModItems.ICE_BUTTON), new ItemStack(ModItems.PACKED_ICE_BUTTON), visibility);
+
+                // Blue Ice
+                entries.putAfter(new ItemStack(ModItems.PACKED_ICE_PRESSURE_PLATE), new ItemStack(ModItems.BLUE_ICE_PRESSURE_PLATE), visibility);
+                entries.putAfter(new ItemStack(ModItems.PACKED_ICE_BUTTON), new ItemStack(ModItems.BLUE_ICE_BUTTON), visibility);
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
 
             } else if (creativeTabBuilderRegistryEvent.getTabKey() == CreativeModeTabs.COMBAT) {

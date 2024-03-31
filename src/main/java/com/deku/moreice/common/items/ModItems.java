@@ -31,6 +31,9 @@ public class ModItems {
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_pressure_plate")
     public static BlockItem ICE_PRESSURE_PLATE;
 
+    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_button")
+    public static BlockItem ICE_BUTTON;
+
     // PACKED ICE
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_stairs")
     public static BlockItem PACKED_ICE_STAIRS;
@@ -56,6 +59,9 @@ public class ModItems {
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_pressure_plate")
     public static BlockItem PACKED_ICE_PRESSURE_PLATE;
 
+    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_button")
+    public static BlockItem PACKED_ICE_BUTTON;
+
     // BLUE ICE
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_stairs")
     public static BlockItem BLUE_ICE_STAIRS;
@@ -80,6 +86,9 @@ public class ModItems {
 
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_pressure_plate")
     public static BlockItem BLUE_ICE_PRESSURE_PLATE;
+
+    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_button")
+    public static BlockItem BLUE_ICE_BUTTON;
 
     // MISC
     @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":freezer")
