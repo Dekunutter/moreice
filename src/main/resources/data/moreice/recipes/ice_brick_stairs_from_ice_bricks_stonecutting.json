@@ -2,7 +2,7 @@
   "type": "minecraft:stonecutting",
   "count": 1,
   "ingredient": {
-    "item": "minecraft:blue_ice"
+    "item": "moreice:ice_bricks"
   },
-  "result": "moreice:blue_ice_brick_wall"
+  "result": "moreice:ice_brick_stairs"
 }

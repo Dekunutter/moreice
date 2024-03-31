@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "moreice:ice_pressure_plate",
+    "moreice:packed_ice_pressure_plate",
+    "moreice:blue_ice_pressure_plate"
+  ]
+}
