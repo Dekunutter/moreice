@@ -1,7 +1,7 @@
 {
-  "parent": "builtin/entity",
+  "parent": "moreice:block/freezer_backup",
   "textures": {
-    "particle": "block/iron_block"
+    "particle": "minecraft:block/iron_block"
   },
   "display": {
     "gui": {

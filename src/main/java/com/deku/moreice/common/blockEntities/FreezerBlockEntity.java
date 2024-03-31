@@ -38,10 +38,8 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.ChestType;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Nullable;
 
@@ -445,10 +443,22 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
             ItemStack itemstack = items.get(0);
             ItemStack itemstack1 = ((RecipeHolder<Recipe<WorldlyContainer>>) holder).value().assemble(this, registry);
             ItemStack itemstack2 = items.get(2);
+            // NOTE: Setting count increments of 4 here as a hardcoded result to all recipes cause I dont want to bother to make a new recipe serializer just to have a working count value for cooking recipe results
+            int resultCount = 1;
+            if (itemstack.is(Items.WATER_BUCKET)) {
+                resultCount = 16;
+            } else if (itemstack.is(Items.SNOW_BLOCK)) {
+                resultCount = 4;
+            }
+
             if (itemstack2.isEmpty()) {
-                items.set(2, itemstack1.copy());
+                ItemStack copy = itemstack1.copy();
+                copy.setCount(resultCount);
+                items.set(2, copy);
             } else if (itemstack2.is(itemstack1.getItem())) {
-                itemstack2.grow(itemstack1.getCount());
+                ItemStack copy = itemstack1.copy();
+                copy.setCount(resultCount);
+                itemstack2.grow(copy.getCount());
             }
 
             if (itemstack.is(Items.WATER_BUCKET)) {
@@ -493,34 +503,34 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
     public static Map<Item, Integer> getFuel() {
         Map<Item, Integer> fuelMap = Maps.newLinkedHashMap();
         add(fuelMap, Blocks.SNOW, 100);
-        add(fuelMap, Items.SNOW_BLOCK, 1200);
-        add(fuelMap, Items.SNOWBALL, 300);
+        add(fuelMap, Items.SNOW_BLOCK, 400);
+        add(fuelMap, Items.SNOWBALL, 100);
 
-        add(fuelMap, Blocks.FROSTED_ICE, 1600);
+        add(fuelMap, Blocks.FROSTED_ICE, 500);
 
-        add(fuelMap, Items.ICE, 1600);
-        add(fuelMap, ModItems.ICE_STAIRS, 1200);
-        add(fuelMap, ModItems.ICE_SLAB, 800);
-        add(fuelMap, ModItems.ICE_WALL, 800);
-        add(fuelMap, ModItems.ICE_BRICKS, 1600);
-        add(fuelMap, ModItems.ICE_BRICK_SLAB, 800);
-        add(fuelMap, ModItems.ICE_PRESSURE_PLATE, 100);
+        add(fuelMap, Items.ICE, 500);
+        add(fuelMap, ModItems.ICE_STAIRS, 400);
+        add(fuelMap, ModItems.ICE_SLAB, 200);
+        add(fuelMap, ModItems.ICE_WALL, 200);
+        add(fuelMap, ModItems.ICE_BRICKS, 500);
+        add(fuelMap, ModItems.ICE_BRICK_SLAB, 200);
+        add(fuelMap, ModItems.ICE_PRESSURE_PLATE, 50);
 
-        add(fuelMap, Items.PACKED_ICE, 1600);
-        add(fuelMap, ModItems.PACKED_ICE_STAIRS, 1200);
-        add(fuelMap, ModItems.PACKED_ICE_SLAB, 800);
-        add(fuelMap, ModItems.PACKED_ICE_WALL, 800);
-        add(fuelMap, ModItems.PACKED_ICE_BRICKS, 1600);
-        add(fuelMap, ModItems.PACKED_ICE_BRICK_SLAB, 800);
-        add(fuelMap, ModItems.PACKED_ICE_PRESSURE_PLATE, 100);
+        add(fuelMap, Items.PACKED_ICE, 500);
+        add(fuelMap, ModItems.PACKED_ICE_STAIRS, 400);
+        add(fuelMap, ModItems.PACKED_ICE_SLAB, 200);
+        add(fuelMap, ModItems.PACKED_ICE_WALL, 200);
+        add(fuelMap, ModItems.PACKED_ICE_BRICKS, 500);
+        add(fuelMap, ModItems.PACKED_ICE_BRICK_SLAB, 200);
+        add(fuelMap, ModItems.PACKED_ICE_PRESSURE_PLATE, 50);
 
-        add(fuelMap, Items.BLUE_ICE, 1600);
-        add(fuelMap, ModItems.BLUE_ICE_STAIRS, 1200);
-        add(fuelMap, ModItems.BLUE_ICE_SLAB, 800);
-        add(fuelMap, ModItems.BLUE_ICE_WALL, 800);
-        add(fuelMap, ModItems.BLUE_ICE_BRICKS, 1600);
-        add(fuelMap, ModItems.BLUE_ICE_BRICK_SLAB, 800);
-        add(fuelMap, ModItems.BLUE_ICE_PRESSURE_PLATE, 100);
+        add(fuelMap, Items.BLUE_ICE, 500);
+        add(fuelMap, ModItems.BLUE_ICE_STAIRS, 400);
+        add(fuelMap, ModItems.BLUE_ICE_SLAB, 200);
+        add(fuelMap, ModItems.BLUE_ICE_WALL, 200);
+        add(fuelMap, ModItems.BLUE_ICE_BRICKS, 500);
+        add(fuelMap, ModItems.BLUE_ICE_BRICK_SLAB, 200);
+        add(fuelMap, ModItems.BLUE_ICE_PRESSURE_PLATE, 50);
         return fuelMap;
     }
 
