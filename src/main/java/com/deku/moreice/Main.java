@@ -1,13 +1,13 @@
 package com.deku.moreice;
 
-import com.deku.eastwardjourneys.utils.LogTweaker;
-import com.deku.eastwardjourneys.utils.ModConfiguration;
 import com.deku.moreice.client.ClientRegistrar;
 import com.deku.moreice.common.blockEntities.ModBlockEntityType;
 import com.deku.moreice.common.blocks.ModBlockInitializer;
 import com.deku.moreice.common.blocks.ModBlockSetType;
 import com.deku.moreice.common.items.ModItems;
 import com.deku.moreice.common.ui.ModCreativeTabs;
+import com.deku.moreice.utils.LogTweaker;
+import com.deku.moreice.utils.ModConfiguration;
 import com.deku.moreice.world.inventory.ModMenuType;
 import com.deku.moreice.world.item.crafting.ModRecipeSerializer;
 import com.deku.moreice.world.item.crafting.ModRecipeType;
