@@ -1,4 +1,4 @@
-package com.deku.eastwardjourneys.utils;
+package com.deku.moreice.utils;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.core.LogEvent;
