@@ -11,7 +11,7 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 
 public class IceWall extends WallBlock implements Ice, IForgeBlock {
     public IceWall() {
-        super(Properties.ofLegacyCopy(Blocks.ICE).forceSolidOn());
+        super(Properties.copy(Blocks.ICE).forceSolidOn());
     }
 
     public void randomTick(BlockState state, ServerLevel level, BlockPos position, RandomSource random) {

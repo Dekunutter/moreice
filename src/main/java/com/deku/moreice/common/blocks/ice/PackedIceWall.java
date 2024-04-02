@@ -6,6 +6,6 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 
 public class PackedIceWall extends WallBlock implements Ice, IForgeBlock {
     public PackedIceWall() {
-        super(Properties.ofLegacyCopy(Blocks.PACKED_ICE).forceSolidOn());
+        super(Properties.copy(Blocks.PACKED_ICE).forceSolidOn());
     }
 }

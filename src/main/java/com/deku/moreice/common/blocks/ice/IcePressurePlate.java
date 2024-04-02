@@ -12,7 +12,7 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 
 public class IcePressurePlate extends PressurePlateBlock implements Ice, IForgeBlock {
     public IcePressurePlate() {
-        super(ModBlockSetType.ICE, Properties.ofLegacyCopy(Blocks.ICE).noCollission());
+        super(PressurePlateBlock.Sensitivity.EVERYTHING, Properties.copy(Blocks.ICE).noCollission(), ModBlockSetType.ICE);
     }
 
     public void randomTick(BlockState state, ServerLevel level, BlockPos position, RandomSource random) {

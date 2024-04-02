@@ -6,6 +6,6 @@ import net.minecraft.world.level.material.PushReaction;
 
 public class BlueIceButton extends ButtonBlock {
     public BlueIceButton() {
-        super(ModBlockSetType.BLUE_ICE, 20, Properties.of().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY));
+        super(Properties.of().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY), ModBlockSetType.BLUE_ICE, 20, true);
     }
 }

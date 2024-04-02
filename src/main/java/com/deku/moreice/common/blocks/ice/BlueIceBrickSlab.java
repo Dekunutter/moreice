@@ -6,6 +6,6 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 
 public class BlueIceBrickSlab extends SlabBlock implements Ice, IForgeBlock {
     public BlueIceBrickSlab() {
-        super(Properties.ofLegacyCopy(Blocks.BLUE_ICE));
+        super(Properties.copy(Blocks.BLUE_ICE));
     }
 }

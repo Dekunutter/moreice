@@ -7,6 +7,6 @@ import net.minecraft.world.level.material.PushReaction;
 
 public class IceButton extends ButtonBlock {
     public IceButton() {
-        super(ModBlockSetType.ICE, 20, BlockBehaviour.Properties.of().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY));
+        super(BlockBehaviour.Properties.of().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY), ModBlockSetType.ICE, 20, true);
     }
 }

@@ -6,6 +6,6 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 
 public class PackedIceStairs extends StairBlock implements Ice, IForgeBlock {
     public PackedIceStairs() {
-        super(Blocks.PACKED_ICE.defaultBlockState(), Properties.ofLegacyCopy(Blocks.PACKED_ICE));
+        super(Blocks.PACKED_ICE.defaultBlockState(), Properties.copy(Blocks.PACKED_ICE));
     }
 }

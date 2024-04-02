@@ -6,6 +6,6 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 
 public class PackedIceBrickSlab extends SlabBlock implements Ice, IForgeBlock {
     public PackedIceBrickSlab() {
-        super(Properties.ofLegacyCopy(Blocks.PACKED_ICE));
+        super(Properties.copy(Blocks.PACKED_ICE));
     }
 }

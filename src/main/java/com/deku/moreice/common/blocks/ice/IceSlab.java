@@ -11,7 +11,7 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 
 public class IceSlab extends SlabBlock implements Ice, IForgeBlock {
     public IceSlab() {
-        super(Properties.ofLegacyCopy(Blocks.ICE));
+        super(Properties.copy(Blocks.ICE));
     }
 
     public void randomTick(BlockState state, ServerLevel level, BlockPos position, RandomSource random) {

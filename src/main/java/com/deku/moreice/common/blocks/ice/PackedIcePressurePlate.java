@@ -7,6 +7,6 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 
 public class PackedIcePressurePlate extends PressurePlateBlock implements Ice, IForgeBlock {
     public PackedIcePressurePlate() {
-        super(ModBlockSetType.PACKED_ICE, Properties.ofLegacyCopy(Blocks.PACKED_ICE).noCollission());
+        super(PressurePlateBlock.Sensitivity.EVERYTHING, Properties.copy(Blocks.PACKED_ICE).noCollission(), ModBlockSetType.PACKED_ICE);
     }
 }

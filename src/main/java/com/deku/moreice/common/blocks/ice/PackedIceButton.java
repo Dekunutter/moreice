@@ -6,6 +6,6 @@ import net.minecraft.world.level.material.PushReaction;
 
 public class PackedIceButton extends ButtonBlock {
     public PackedIceButton() {
-        super(ModBlockSetType.PACKED_ICE, 20, Properties.of().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY));
+        super(Properties.of().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY), ModBlockSetType.PACKED_ICE, 20, true);
     }
 }

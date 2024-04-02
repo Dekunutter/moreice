@@ -11,7 +11,7 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 
 public class IceStairs extends StairBlock implements Ice, IForgeBlock {
     public IceStairs() {
-        super(Blocks.ICE.defaultBlockState(), Properties.ofLegacyCopy(Blocks.ICE));
+        super(Blocks.ICE.defaultBlockState(), Properties.copy(Blocks.ICE));
     }
 
     public void randomTick(BlockState state, ServerLevel level, BlockPos position, RandomSource random) {

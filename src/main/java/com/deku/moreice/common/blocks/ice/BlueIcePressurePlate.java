@@ -12,6 +12,6 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 
 public class BlueIcePressurePlate extends PressurePlateBlock implements Ice, IForgeBlock {
     public BlueIcePressurePlate() {
-        super(ModBlockSetType.BLUE_ICE, Properties.ofLegacyCopy(Blocks.BLUE_ICE).noCollission());
+        super(PressurePlateBlock.Sensitivity.EVERYTHING, Properties.copy(Blocks.BLUE_ICE).noCollission(), ModBlockSetType.BLUE_ICE);
     }
 }

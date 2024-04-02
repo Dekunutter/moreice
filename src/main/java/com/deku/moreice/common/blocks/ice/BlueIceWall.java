@@ -6,6 +6,6 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 
 public class BlueIceWall extends WallBlock implements Ice, IForgeBlock {
     public BlueIceWall() {
-        super(Properties.ofLegacyCopy(Blocks.BLUE_ICE).forceSolidOn());
+        super(Properties.copy(Blocks.BLUE_ICE).forceSolidOn());
     }
 }

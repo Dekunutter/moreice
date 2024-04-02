@@ -48,7 +48,7 @@ import java.util.Map;
 
 import static com.deku.moreice.Main.MOD_ID;
 
-public class FreezerBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeCraftingHolder, StackedContentsCompatible, LidBlockEntity {
+public class FreezerBlockEntity extends BaseContainerBlockEntity implements WorldlyContainer, RecipeHolder, StackedContentsCompatible, LidBlockEntity {
     private static final int EVENT_SET_OPEN_COUNT = 1;
     private NonNullList<ItemStack> items = NonNullList.withSize(3, ItemStack.EMPTY);
     private int coolingTime;
@@ -234,16 +234,16 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
     }
 
     @Override
-    public void setRecipeUsed(@Nullable RecipeHolder<?> holder) {
-        if (holder != null) {
-            ResourceLocation resourcelocation = holder.id();
+    public void setRecipeUsed(@Nullable Recipe<?> recipe) {
+        if (recipe != null) {
+            ResourceLocation resourcelocation = recipe.getId();
             recipesUsed.addTo(resourcelocation, 1);
         }
     }
 
     @Nullable
     @Override
-    public RecipeHolder<?> getRecipeUsed() {
+    public Recipe<?> getRecipeUsed() {
         return null;
     }
 
@@ -255,25 +255,25 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
     }
 
     public void awardUsedRecipesAndPopExperience(ServerPlayer player) {
-        List<RecipeHolder<?>> list = this.getRecipesToAwardAndPopExperience(player.serverLevel(), player.position());
+        List<Recipe<?>> list = this.getRecipesToAwardAndPopExperience(player.serverLevel(), player.position());
         player.awardRecipes(list);
 
-        for(RecipeHolder<?> recipeholder : list) {
-            if (recipeholder != null) {
-                player.triggerRecipeCrafted(recipeholder, this.items);
+        for(Recipe<?> recipe : list) {
+            if (recipe != null) {
+                player.triggerRecipeCrafted(recipe, this.items);
             }
         }
 
         this.recipesUsed.clear();
     }
 
-    public List<RecipeHolder<?>> getRecipesToAwardAndPopExperience(ServerLevel level, Vec3 position) {
-        List<RecipeHolder<?>> list = Lists.newArrayList();
+    public List<Recipe<?>> getRecipesToAwardAndPopExperience(ServerLevel level, Vec3 position) {
+        List<Recipe<?>> list = Lists.newArrayList();
 
         for(Object2IntMap.Entry<ResourceLocation> entry : this.recipesUsed.object2IntEntrySet()) {
             level.getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) -> {
                 list.add(recipe);
-                createExperience(level, position, entry.getIntValue(), ((AbstractCookingRecipe)recipe.value()).getExperience());
+                createExperience(level, position, entry.getIntValue(), ((AbstractCookingRecipe)recipe).getExperience());
             });
         }
 
@@ -355,19 +355,19 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
         boolean hasIngredient = !blockEntity.items.get(0).isEmpty();
         boolean hasFuel = !fuel.isEmpty();
         if (blockEntity.isCooling() || hasFuel && hasIngredient) {
-            RecipeHolder<?> recipeHolder;
+            Recipe<?> recipe;
             if (hasIngredient) {
                 // TODO: Recipe not being found?
-                recipeHolder = blockEntity.quickCheck.getRecipeFor(blockEntity, level).orElse(null);
+                recipe = blockEntity.quickCheck.getRecipeFor(blockEntity, level).orElse(null);
                 //RecipeHolder<?> holder2 = getMatchingRecipe()
             } else {
-                recipeHolder = null;
+                recipe = null;
             }
 
             // If the ingredient is freezable but we arent actively cooling yet, kick it off
             int maxStackSize = blockEntity.getMaxStackSize();
             // TODO: Cause recipe is null we cant get in here
-            if (!blockEntity.isCooling() && blockEntity.canFreeze(level.registryAccess(), recipeHolder, blockEntity.items, maxStackSize)) {
+            if (!blockEntity.isCooling() && blockEntity.canFreeze(level.registryAccess(), recipe, blockEntity.items, maxStackSize)) {
                 blockEntity.coolingTime = blockEntity.getFreezeDuration(fuel);
                 blockEntity.coolingDuration = blockEntity.coolingTime;
                 if (blockEntity.isCooling()) {
@@ -385,13 +385,13 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
             }
 
             // If the ingredient is freezable, update freezing progress
-            if (blockEntity.isCooling() && blockEntity.canFreeze(level.registryAccess(), recipeHolder, blockEntity.items, maxStackSize)) {
+            if (blockEntity.isCooling() && blockEntity.canFreeze(level.registryAccess(), recipe, blockEntity.items, maxStackSize)) {
                 ++blockEntity.freezingProgress;
                 if (blockEntity.freezingProgress == blockEntity.freezingTotalTime) {
                     blockEntity.freezingProgress = 0;
                     blockEntity.freezingTotalTime = getTotalCoolingTime(level, blockEntity);
-                    if (blockEntity.freeze(level.registryAccess(), recipeHolder, blockEntity.items, maxStackSize)) {
-                        blockEntity.setRecipeUsed(recipeHolder);
+                    if (blockEntity.freeze(level.registryAccess(), recipe, blockEntity.items, maxStackSize)) {
+                        blockEntity.setRecipeUsed(recipe);
                     }
 
                     stateChanged = true;
@@ -416,9 +416,9 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
         }
     }
 
-    private boolean canFreeze(RegistryAccess registry, @javax.annotation.Nullable RecipeHolder<?> holder, NonNullList<ItemStack> items, int flag) {
-        if (!items.get(0).isEmpty() && holder != null) {
-            ItemStack itemstack = ((RecipeHolder<Recipe<WorldlyContainer>>)holder).value().assemble(this, registry);
+    private boolean canFreeze(RegistryAccess registry, @javax.annotation.Nullable Recipe<?> recipe, NonNullList<ItemStack> items, int flag) {
+        if (!items.get(0).isEmpty() && recipe != null) {
+            ItemStack itemstack = ((Recipe<WorldlyContainer>)recipe).assemble(this, registry);
             if (itemstack.isEmpty()) {
                 return false;
             } else {
@@ -438,10 +438,10 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
         }
     }
 
-    private boolean freeze(RegistryAccess registry, @javax.annotation.Nullable RecipeHolder<?> holder, NonNullList<ItemStack> items, int flag) {
-        if (holder != null && canFreeze(registry, holder, items, flag)) {
+    private boolean freeze(RegistryAccess registry, @javax.annotation.Nullable Recipe<?> recipe, NonNullList<ItemStack> items, int flag) {
+        if (recipe != null && canFreeze(registry, recipe, items, flag)) {
             ItemStack itemstack = items.get(0);
-            ItemStack itemstack1 = ((RecipeHolder<Recipe<WorldlyContainer>>) holder).value().assemble(this, registry);
+            ItemStack itemstack1 = ((Recipe<WorldlyContainer>) recipe).assemble(this, registry);
             ItemStack itemstack2 = items.get(2);
             // NOTE: Setting count increments of 4 here as a hardcoded result to all recipes cause I dont want to bother to make a new recipe serializer just to have a working count value for cooking recipe results
             int resultCount = 1;
@@ -486,9 +486,7 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
     }
 
     private static int getTotalCoolingTime(Level level, FreezerBlockEntity blockEntity) {
-        return blockEntity.quickCheck.getRecipeFor(blockEntity, level).map((itemToFreeze) -> {
-            return itemToFreeze.value().getCookingTime();
-        }).orElse(200);
+        return blockEntity.quickCheck.getRecipeFor(blockEntity, level).map(AbstractCookingRecipe::getCookingTime).orElse(200);
     }
 
     public static boolean isFuel(ItemStack itemStack) {

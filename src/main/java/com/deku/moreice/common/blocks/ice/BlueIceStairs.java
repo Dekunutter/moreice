@@ -6,6 +6,6 @@ import net.minecraftforge.common.extensions.IForgeBlock;
 
 public class BlueIceStairs extends StairBlock implements Ice, IForgeBlock {
     public BlueIceStairs() {
-        super(Blocks.BLUE_ICE.defaultBlockState(), Properties.ofLegacyCopy(Blocks.BLUE_ICE));
+        super(Blocks.BLUE_ICE.defaultBlockState(), Properties.copy(Blocks.BLUE_ICE));
     }
 }

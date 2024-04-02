@@ -39,8 +39,6 @@ import static com.deku.moreice.common.blocks.ModBlockStateProperties.FACING;
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.WATERLOGGED;
 
 public class Freezer extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    public static final MapCodec<Freezer> CODEC = simpleCodec(Freezer::new);
-
     public static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 14, 15);
 
     public Freezer() {
@@ -52,10 +50,6 @@ public class Freezer extends BaseEntityBlock implements SimpleWaterloggedBlock {
         super(properties);
     }
 
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
 
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos position, CollisionContext collisionContext) {

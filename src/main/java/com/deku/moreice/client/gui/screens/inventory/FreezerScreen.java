@@ -14,8 +14,7 @@ import static com.deku.moreice.Main.MOD_ID;
 
 @OnlyIn(Dist.CLIENT)
 public class FreezerScreen extends AbstractContainerScreen<FreezerMenu> {
-    private static final ResourceLocation PROGRESS_SPRITE = new ResourceLocation(MOD_ID,"container/freezer/cooling_progress");
-    private static final ResourceLocation FREEZING_PROGRESS_SPRITE = new ResourceLocation(MOD_ID, "container/freezer/freezing_progress");
+    //  TODO: In 1.20.1 the texture is all in one file so I'll need to combine my seperate textures into one and update the rendering logic to match the original
     private static final ResourceLocation TEXTURE = new ResourceLocation(MOD_ID, "textures/gui/container/freezer.png");
 
     public FreezerScreen(FreezerMenu menu, Inventory inventory, Component networkComponent) {
@@ -23,6 +22,7 @@ public class FreezerScreen extends AbstractContainerScreen<FreezerMenu> {
     }
 
     public void render(GuiGraphics graphics, int x, int y, float z) {
+        this.renderBackground(graphics);
         super.render(graphics, x, y, z);
         this.renderTooltip(graphics, x, y);
     }
@@ -35,12 +35,12 @@ public class FreezerScreen extends AbstractContainerScreen<FreezerMenu> {
         if (menu.isCooling()) {
             int k = 14;
             int l = Mth.ceil(menu.getProgress() * 13.0F) + 1;
-            graphics.blitSprite(PROGRESS_SPRITE, 14, 14, 0, 14 - l, i + 56, j + 36 + 14 - l, 14, l);
+            graphics.blit(TEXTURE, i + 56, j + 36 + 12 - l, 176, 12 - l, k, l + 1);
         }
 
         int i1 = 24;
         int j1 = Mth.ceil(menu.getFreezingProgress() * 24.0F);
-        graphics.blitSprite(FREEZING_PROGRESS_SPRITE, 24, 16, 0, 0, i + 79, j + 34, j1, 16);
+        graphics.blit(TEXTURE, i + 79, j + 34, 176, 14, j1 + 1, 16);
     }
 
     public boolean isPauseScreen() {
