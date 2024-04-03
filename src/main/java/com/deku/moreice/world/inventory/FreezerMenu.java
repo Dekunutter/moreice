@@ -2,10 +2,6 @@ package com.deku.moreice.world.inventory;
 
 import com.deku.moreice.common.blockEntities.FreezerBlockEntity;
 import com.deku.moreice.world.item.crafting.ModRecipeType;
-import com.google.common.collect.Lists;
-import it.unimi.dsi.fastutil.ints.IntArrayList;
-import it.unimi.dsi.fastutil.ints.IntList;
-import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Container;
@@ -19,7 +15,6 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 
-import java.util.List;
 import java.util.Objects;
 
 public class FreezerMenu extends AbstractContainerMenu {
@@ -27,16 +22,6 @@ public class FreezerMenu extends AbstractContainerMenu {
 
     private final Container container;
     private final ContainerData data;
-
-    // Slots and network synchronizing
-    private final NonNullList<ItemStack> lastSlots = NonNullList.create();
-    public final NonNullList<Slot> slots = NonNullList.create();
-    private final List<DataSlot> dataSlots = Lists.newArrayList();
-    private ItemStack carried = ItemStack.EMPTY;
-    private final NonNullList<ItemStack> remoteSlots = NonNullList.create();
-    private final IntList remoteDataSlots = new IntArrayList();
-    private ItemStack remoteCarried = ItemStack.EMPTY;
-    private int stateId;
 
     protected final Level level;
 
@@ -79,53 +64,57 @@ public class FreezerMenu extends AbstractContainerMenu {
         addDataSlots(containerData);
     }
 
-//    @Override
-//    public void fillCraftSlotsStackedContents(StackedContents contents) {
-//        if (container instanceof StackedContentsCompatible) {
-//            ((StackedContentsCompatible) container).fillStackedContents(contents);
-//        }
-//    }
-//
-//    @Override
-//    public void clearCraftingContent() {
-//        getSlot(0).set(ItemStack.EMPTY);
-//        getSlot(2).set(ItemStack.EMPTY);
-//    }
-//
-//    @Override
-//    public boolean recipeMatches(RecipeHolder<? extends Recipe<Container>> holder) {
-//        return holder.value().matches(container, level);
-//    }
-//
-//    @Override
-//    public int getResultSlotIndex() {
-//        return RESULT_SLOT_INDEX;
-//    }
-//
-//    @Override
-//    public int getGridWidth() {
-//        return 1;
-//    }
-//
-//    @Override
-//    public int getGridHeight() {
-//        return 1;
-//    }
-//
-//    @Override
-//    public int getSize() {
-//        return 3;
-//    }
-//
-//    @Override
-//    public boolean shouldMoveToInventory(int p_150635_) {
-//        return false;
-//    }
-
     @Override
-    public ItemStack quickMoveStack(Player p_38941_, int p_38942_) {
-        // TODO: Not sure what this is meant to do. Maybe some auto-fill logic via shortcuts
-        return null;
+    public ItemStack quickMoveStack(Player player, int position) {
+        ItemStack itemstack = ItemStack.EMPTY;
+        Slot slot = slots.get(position);
+        if (slot != null && slot.hasItem()) {
+            ItemStack itemstack1 = slot.getItem();
+            itemstack = itemstack1.copy();
+            if (position == 2) {
+                if (!moveItemStackTo(itemstack1, 3, 39, true)) {
+                    return ItemStack.EMPTY;
+                }
+
+                slot.onQuickCraft(itemstack1, itemstack);
+            } else if (position != 1 && position != 0) {
+                if (canFreeze(itemstack1)) {
+                    if (!moveItemStackTo(itemstack1, 0, 1, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (this.isFuel(itemstack1)) {
+                    if (!moveItemStackTo(itemstack1, 1, 2, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (position >= 3 && position < 30) {
+                    if (!moveItemStackTo(itemstack1, 30, 39, false)) {
+                        return ItemStack.EMPTY;
+                    }
+                } else if (position >= 30 && position < 39 && !moveItemStackTo(itemstack1, 3, 30, false)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!moveItemStackTo(itemstack1, 3, 39, false)) {
+                return ItemStack.EMPTY;
+            }
+
+            if (itemstack1.isEmpty()) {
+                slot.setByPlayer(ItemStack.EMPTY);
+            } else {
+                slot.setChanged();
+            }
+
+            if (itemstack1.getCount() == itemstack.getCount()) {
+                return ItemStack.EMPTY;
+            }
+
+            slot.onTake(player, itemstack1);
+        }
+
+        return itemstack;
+    }
+
+    protected boolean canFreeze(ItemStack itemStack) {
+        return level.getRecipeManager().getRecipeFor((RecipeType<AbstractCookingRecipe>) recipeType, new SimpleContainer(itemStack), level).isPresent();
     }
 
     /**
