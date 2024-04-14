@@ -1,0 +1,10 @@
+{
+  "values": [
+    "minecraft:ice",
+    "moreice:ice_bricks",
+    "minecraft:packed_ice",
+    "moreice:packed_ice_bricks",
+    "minecraft:blue_ice",
+    "moreice:blue_ice_bricks"
+  ]
+}
