@@ -2,6 +2,7 @@ package com.deku.moreice.common.blockEntities;
 
 import com.deku.moreice.common.blocks.ModBlockStateProperties;
 import com.deku.moreice.common.items.ModItems;
+import com.deku.moreice.common.tags.ModItemTags;
 import com.deku.moreice.world.inventory.FreezerMenu;
 import com.deku.moreice.world.item.crafting.ModRecipeType;
 import com.google.common.collect.Lists;
@@ -500,35 +501,13 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
 
     public static Map<Item, Integer> getFuel() {
         Map<Item, Integer> fuelMap = Maps.newLinkedHashMap();
-        add(fuelMap, Blocks.SNOW, 100);
-        add(fuelMap, Items.SNOW_BLOCK, 400);
-        add(fuelMap, Items.SNOWBALL, 100);
-
-        add(fuelMap, Blocks.FROSTED_ICE, 500);
-
-        add(fuelMap, Items.ICE, 500);
-        add(fuelMap, ModItems.ICE_STAIRS, 400);
-        add(fuelMap, ModItems.ICE_SLAB, 200);
-        add(fuelMap, ModItems.ICE_WALL, 200);
-        add(fuelMap, ModItems.ICE_BRICKS, 500);
-        add(fuelMap, ModItems.ICE_BRICK_SLAB, 200);
-        add(fuelMap, ModItems.ICE_PRESSURE_PLATE, 50);
-
-        add(fuelMap, Items.PACKED_ICE, 500);
-        add(fuelMap, ModItems.PACKED_ICE_STAIRS, 400);
-        add(fuelMap, ModItems.PACKED_ICE_SLAB, 200);
-        add(fuelMap, ModItems.PACKED_ICE_WALL, 200);
-        add(fuelMap, ModItems.PACKED_ICE_BRICKS, 500);
-        add(fuelMap, ModItems.PACKED_ICE_BRICK_SLAB, 200);
-        add(fuelMap, ModItems.PACKED_ICE_PRESSURE_PLATE, 50);
-
-        add(fuelMap, Items.BLUE_ICE, 500);
-        add(fuelMap, ModItems.BLUE_ICE_STAIRS, 400);
-        add(fuelMap, ModItems.BLUE_ICE_SLAB, 200);
-        add(fuelMap, ModItems.BLUE_ICE_WALL, 200);
-        add(fuelMap, ModItems.BLUE_ICE_BRICKS, 500);
-        add(fuelMap, ModItems.BLUE_ICE_BRICK_SLAB, 200);
-        add(fuelMap, ModItems.BLUE_ICE_PRESSURE_PLATE, 50);
+        // Lazy solution to allowing data pack control over items that qualify as freezer fuel and can still set different cooling time values
+        add(fuelMap, ModItemTags.FREEZER_FUEL_50, 50);
+        add(fuelMap, ModItemTags.FREEZER_FUEL_100, 100);
+        add(fuelMap, ModItemTags.FREEZER_FUEL_200, 200);
+        add(fuelMap, ModItemTags.FREEZER_FUEL_300, 300);
+        add(fuelMap, ModItemTags.FREEZER_FUEL_400, 400);
+        add(fuelMap, ModItemTags.FREEZER_FUEL_500, 500);
         return fuelMap;
     }
 
