@@ -7,9 +7,9 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.extensions.IForgeBlock;
+import net.neoforged.neoforge.common.extensions.IBlockExtension;
 
-public class IceWall extends WallBlock implements Ice, IForgeBlock {
+public class IceWall extends WallBlock implements Ice, IBlockExtension {
     public IceWall() {
         super(Properties.ofLegacyCopy(Blocks.ICE).forceSolidOn());
     }

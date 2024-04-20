@@ -7,9 +7,9 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.extensions.IForgeBlock;
+import net.neoforged.neoforge.common.extensions.IBlockExtension;
 
-public class IceStairs extends StairBlock implements Ice, IForgeBlock {
+public class IceStairs extends StairBlock implements Ice, IBlockExtension {
     public IceStairs() {
         super(Blocks.ICE.defaultBlockState(), Properties.ofLegacyCopy(Blocks.ICE));
     }

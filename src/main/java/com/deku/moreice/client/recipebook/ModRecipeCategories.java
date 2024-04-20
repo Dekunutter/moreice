@@ -9,6 +9,4 @@ import java.util.function.Supplier;
 
 public class ModRecipeCategories {
     public static final Supplier<RecipeBookCategories> FREEZING = Suppliers.memoize(() -> RecipeBookCategories.create("FREEZING", new ItemStack(Items.ICE)));
-
-
 }

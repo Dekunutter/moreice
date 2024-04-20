@@ -1,96 +1,72 @@
 package com.deku.moreice.common.items;
 
+import com.deku.moreice.common.blocks.ModBlockInitializer;
 import net.minecraft.world.item.*;
-import net.minecraftforge.registries.ObjectHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
 
 import static com.deku.moreice.Main.MOD_ID;
 
 public class ModItems {
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MOD_ID);
     // ICE
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_stairs")
-    public static BlockItem ICE_STAIRS;
+    public static final Supplier<BlockItem> ICE_STAIRS = ITEMS.registerSimpleBlockItem("ice_stairs", ModBlockInitializer.ICE_STAIRS);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_slab")
-    public static BlockItem ICE_SLAB;
+    public static final Supplier<BlockItem> ICE_SLAB = ITEMS.registerSimpleBlockItem("ice_slab", ModBlockInitializer.ICE_SLAB);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_wall")
-    public static BlockItem ICE_WALL;
+    public static final Supplier<BlockItem> ICE_WALL = ITEMS.registerSimpleBlockItem("ice_wall", ModBlockInitializer.ICE_WALL);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_bricks")
-    public static BlockItem ICE_BRICKS;
+    public static final Supplier<BlockItem> ICE_BRICKS = ITEMS.registerSimpleBlockItem("ice_bricks", ModBlockInitializer.ICE_BRICKS);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_brick_slab")
-    public static BlockItem ICE_BRICK_SLAB;
+    public static final Supplier<BlockItem> ICE_BRICK_SLAB = ITEMS.registerSimpleBlockItem("ice_brick_slab", ModBlockInitializer.ICE_BRICK_SLAB);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_brick_wall")
-    public static BlockItem ICE_BRICK_WALL;
+    public static final Supplier<BlockItem> ICE_BRICK_WALL = ITEMS.registerSimpleBlockItem("ice_brick_wall", ModBlockInitializer.ICE_BRICK_WALL);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_brick_stairs")
-    public static BlockItem ICE_BRICK_STAIRS;
+    public static final Supplier<BlockItem> ICE_BRICK_STAIRS = ITEMS.registerSimpleBlockItem("ice_brick_stairs", ModBlockInitializer.ICE_BRICK_STAIRS);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_pressure_plate")
-    public static BlockItem ICE_PRESSURE_PLATE;
+    public static final Supplier<BlockItem> ICE_PRESSURE_PLATE = ITEMS.registerSimpleBlockItem("ice_pressure_plate", ModBlockInitializer.ICE_PRESSURE_PLATE);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":ice_button")
-    public static BlockItem ICE_BUTTON;
+    public static final Supplier<BlockItem> ICE_BUTTON = ITEMS.registerSimpleBlockItem("ice_button", ModBlockInitializer.ICE_BUTTON);
 
     // PACKED ICE
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_stairs")
-    public static BlockItem PACKED_ICE_STAIRS;
+    public static final Supplier<BlockItem> PACKED_ICE_STAIRS = ITEMS.registerSimpleBlockItem("packed_ice_stairs", ModBlockInitializer.PACKED_ICE_STAIRS);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_slab")
-    public static BlockItem PACKED_ICE_SLAB;
+    public static final Supplier<BlockItem> PACKED_ICE_SLAB = ITEMS.registerSimpleBlockItem("packed_ice_slab", ModBlockInitializer.PACKED_ICE_SLAB);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_wall")
-    public static BlockItem PACKED_ICE_WALL;
+    public static final Supplier<BlockItem> PACKED_ICE_WALL = ITEMS.registerSimpleBlockItem("packed_ice_wall", ModBlockInitializer.PACKED_ICE_WALL);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_bricks")
-    public static BlockItem PACKED_ICE_BRICKS;
+    public static final Supplier<BlockItem> PACKED_ICE_BRICKS = ITEMS.registerSimpleBlockItem("packed_ice_bricks", ModBlockInitializer.PACKED_ICE_BRICKS);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_brick_slab")
-    public static BlockItem PACKED_ICE_BRICK_SLAB;
+    public static final Supplier<BlockItem> PACKED_ICE_BRICK_SLAB = ITEMS.registerSimpleBlockItem("packed_ice_brick_slab", ModBlockInitializer.PACKED_ICE_BRICK_SLAB);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_brick_wall")
-    public static BlockItem PACKED_ICE_BRICK_WALL;
+    public static final Supplier<BlockItem> PACKED_ICE_BRICK_WALL = ITEMS.registerSimpleBlockItem("packed_ice_brick_wall", ModBlockInitializer.PACKED_ICE_BRICK_WALL);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_brick_stairs")
-    public static BlockItem PACKED_ICE_BRICK_STAIRS;
+    public static final Supplier<BlockItem> PACKED_ICE_BRICK_STAIRS = ITEMS.registerSimpleBlockItem("packed_ice_brick_stairs", ModBlockInitializer.PACKED_ICE_BRICK_STAIRS);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_pressure_plate")
-    public static BlockItem PACKED_ICE_PRESSURE_PLATE;
+    public static final Supplier<BlockItem> PACKED_ICE_PRESSURE_PLATE = ITEMS.registerSimpleBlockItem("packed_ice_pressure_plate", ModBlockInitializer.PACKED_ICE_PRESSURE_PLATE);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":packed_ice_button")
-    public static BlockItem PACKED_ICE_BUTTON;
+    public static final Supplier<BlockItem> PACKED_ICE_BUTTON = ITEMS.registerSimpleBlockItem("packed_ice_button", ModBlockInitializer.PACKED_ICE_BUTTON);
 
     // BLUE ICE
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_stairs")
-    public static BlockItem BLUE_ICE_STAIRS;
+    public static final Supplier<BlockItem> BLUE_ICE_STAIRS = ITEMS.registerSimpleBlockItem("blue_ice_stairs", ModBlockInitializer.BLUE_ICE_STAIRS);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_slab")
-    public static BlockItem BLUE_ICE_SLAB;
+    public static final Supplier<BlockItem> BLUE_ICE_SLAB = ITEMS.registerSimpleBlockItem("blue_ice_slab", ModBlockInitializer.BLUE_ICE_SLAB);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_wall")
-    public static BlockItem BLUE_ICE_WALL;
+    public static final Supplier<BlockItem> BLUE_ICE_WALL = ITEMS.registerSimpleBlockItem("blue_ice_wall", ModBlockInitializer.BLUE_ICE_WALL);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_bricks")
-    public static BlockItem BLUE_ICE_BRICKS;
+    public static final Supplier<BlockItem> BLUE_ICE_BRICKS = ITEMS.registerSimpleBlockItem("blue_ice_bricks", ModBlockInitializer.BLUE_ICE_BRICKS);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_brick_slab")
-    public static BlockItem BLUE_ICE_BRICK_SLAB;
+    public static final Supplier<BlockItem> BLUE_ICE_BRICK_SLAB = ITEMS.registerSimpleBlockItem("blue_ice_brick_slab", ModBlockInitializer.BLUE_ICE_BRICK_SLAB);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_brick_wall")
-    public static BlockItem BLUE_ICE_BRICK_WALL;
+    public static final Supplier<BlockItem> BLUE_ICE_BRICK_WALL = ITEMS.registerSimpleBlockItem("blue_ice_brick_wall", ModBlockInitializer.BLUE_ICE_BRICK_WALL);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_brick_stairs")
-    public static BlockItem BLUE_ICE_BRICK_STAIRS;
+    public static final Supplier<BlockItem> BLUE_ICE_BRICK_STAIRS = ITEMS.registerSimpleBlockItem("blue_ice_brick_stairs", ModBlockInitializer.BLUE_ICE_BRICK_STAIRS);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_pressure_plate")
-    public static BlockItem BLUE_ICE_PRESSURE_PLATE;
+    public static final Supplier<BlockItem> BLUE_ICE_PRESSURE_PLATE = ITEMS.registerSimpleBlockItem("blue_ice_pressure_plate", ModBlockInitializer.BLUE_ICE_PRESSURE_PLATE);
 
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":blue_ice_button")
-    public static BlockItem BLUE_ICE_BUTTON;
+    public static final Supplier<BlockItem> BLUE_ICE_BUTTON = ITEMS.registerSimpleBlockItem("blue_ice_button", ModBlockInitializer.BLUE_ICE_BUTTON);
 
     // MISC
-    @ObjectHolder(registryName = "minecraft:item", value = MOD_ID + ":freezer")
-    public static BlockItem FREEZER;
+    public static final Supplier<BlockItem> FREEZER = ITEMS.registerSimpleBlockItem("freezer", ModBlockInitializer.FREEZER);
 }

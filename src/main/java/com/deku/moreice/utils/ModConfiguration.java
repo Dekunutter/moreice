@@ -1,10 +1,11 @@
 package com.deku.moreice.utils;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public final class ModConfiguration {
-    private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-    public static final ForgeConfigSpec COMMON_SPEC;
+    private static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    public static final ModConfigSpec COMMON_SPEC;
     static {
         BUILDER.comment("------ More Ice General Settings ------").push("more_ice");
         BUILDER.pop();

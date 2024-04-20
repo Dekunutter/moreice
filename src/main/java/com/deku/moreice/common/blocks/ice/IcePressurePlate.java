@@ -8,9 +8,9 @@ import net.minecraft.world.level.LightLayer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.extensions.IForgeBlock;
+import net.neoforged.neoforge.common.extensions.IBlockExtension;
 
-public class IcePressurePlate extends PressurePlateBlock implements Ice, IForgeBlock {
+public class IcePressurePlate extends PressurePlateBlock implements Ice, IBlockExtension {
     public IcePressurePlate() {
         super(ModBlockSetType.ICE, Properties.ofLegacyCopy(Blocks.ICE).noCollission());
     }
