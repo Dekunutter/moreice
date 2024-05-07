@@ -1,0 +1,19 @@
+architectury {
+    common(enabled_platforms.split(","))
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/moreice.accesswidener")
+}
+
+// if accesstransformer file exists, enable it
+if (file('src/main/resources/META-INF/accesstransformer.cfg').exists()) {
+    minecraft.accessTransformers.file file('src/main/resources/META-INF/accesstransformer.cfg')
+}
+
+// Dependencies to include in this subproject
+dependencies {
+    modApi("dev.architectury:architectury:${architectury_version}") {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+}
