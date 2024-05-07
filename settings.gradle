@@ -5,9 +5,23 @@ pluginManagement {
             name = 'MinecraftForge'
             url = 'https://maven.minecraftforge.net/'
         }
+        maven {
+            name = "NeoForge"
+            url = 'https://maven.neoforged.net/releases'
+        }
+        maven {
+            name = "Fabric"
+            url =  "https://maven.fabricmc.net/"
+        }
+        maven {
+            name = "Architectury"
+            url = "https://maven.architectury.dev/" }
     }
 }
 
 plugins {
-    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.7.0'
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.8.0'
 }
+
+rootProject.name = 'MoreIce'
+include('common', 'forge', 'neoforge')
