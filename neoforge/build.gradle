@@ -21,7 +21,7 @@ repositories {
 
 // Determine archive name for assembled JAR
 base {
-    archivesName = "${mod_id}-neoforge-${minecraft_version}"
+    archivesName = "${mod_id}-neoforge-${minecraft_version}-v${mod_version}"
 }
 
 configurations {
