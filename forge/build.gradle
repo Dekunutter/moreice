@@ -16,7 +16,7 @@ loom {
 
 // sets the base settings for this project. In this case, setting th e archive name when a JAR is assembled
 base {
-    archivesName = "${mod_id}-forge-${minecraft_version}"
+    archivesName = "${mod_id}-forge-${minecraft_version}-v${mod_version}"
 }
 
 configurations {
@@ -88,14 +88,12 @@ components.java {
     }
 }
 
-jar.finalizedBy('reobfJar')
-
 // Example configuration to allow publishing using the maven-publish plugin
 publishing {
     publications {
         mavenForge(MavenPublication) {
             artifactId = mod_id + "-forge"
-            version = project.version + (!project.version.endsWith("SNAPSHOT") ? "+" + minecraft_version : "")
+            version = project.version + (!project.version.endsWith("SNAPSHOT") ? "+" + minecraft_version + "+v" + mod_version: "")
 
             from components.java
         }

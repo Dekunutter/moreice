@@ -44,25 +44,25 @@ subprojects {
             rename { "${it}_${mod_id}" }
         }
         // sets manifest attributes within the jar
-        manifest {
-            attributes([
-                "Specification-Title"     : mod_id,
-                "Specification-Vendor"    : "Dekunutter",
-                "Specification-Version"   : project.jar.archiveVersion,
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "Dekunutter"
-            ])
-        }
+//        manifest {
+//            attributes([
+//                "Specification-Title"     : mod_id,
+//                "Specification-Vendor"    : "Dekunutter",
+//                "Specification-Version"   : '1',
+//                "Implementation-Title"    : project.name,
+//                "Implementation-Version"  : project.jar.archiveVersion,
+//                "Implementation-Vendor"   : "Dekunutter"
+//            ])
+//        }
     }
 
     // Configuration for the task that builds the sources JAR
-    sourcesJar {
-        // renames license file
-        from(rootProject.file("LICENSE")) {
-            rename { "${it}_${mod_id}" }
-        }
-    }
+//    sourcesJar {
+//        // renames license file
+//        from(rootProject.file("LICENSE")) {
+//            rename { "${it}_${mod_id}" }
+//        }
+//    }
 
     // Determines which Maven repository dependencies are fetched from.
     repositories {
