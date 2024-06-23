@@ -30,7 +30,7 @@ subprojects {
         mappings loom.officialMojangMappings()
     }
 
-    // Mojang ships Java 17 to end users in 1.18+, so your mod should target Java 17.
+    // Mojang ships Java 21 to end users in 1.20.5+, so your mod should target Java 21.
     java.toolchain.languageVersion = JavaLanguageVersion.of(java_version.toInteger())
 
     // Adds tasks for the creation of sources and javadoc JARs
@@ -79,25 +79,5 @@ subprojects {
     // compilation settings for Gradle tasks that compile Javadocs
     tasks.withType(Javadoc).configureEach {
         failOnError false
-    }
-
-    // This block of code expands all declared replace properties in the specified resource targets.
-    // A missing property will result in an error. Properties are expanded using ${} Groovy notation.
-    // When "copyIdeResources" is enabled, this will also run before the game launches in IDE environments.
-    // See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
-    processResources {
-        // expand every property from gradle.properties
-        def stringProperties = providers.gradlePropertiesPrefixedBy('').get()
-        stringProperties.each { inputs.property(it.key, it.value) }
-
-        def files = ["META-INF/mods.toml", "pack.mcmeta"]
-
-        files.each {
-            filesMatching(it) {
-                expand(stringProperties) {
-                    escapeBackslash = true
-                }
-            }
-        }
     }
 }

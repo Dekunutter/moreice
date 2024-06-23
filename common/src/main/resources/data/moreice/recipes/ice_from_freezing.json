@@ -6,5 +6,8 @@
   "ingredient": {
     "tag": "moreice:freezes_into_ice"
   },
-  "result": "minecraft:ice"
+  "result": {
+    "count": 1,
+    "id": "minecraft:ice"
+  }
 }

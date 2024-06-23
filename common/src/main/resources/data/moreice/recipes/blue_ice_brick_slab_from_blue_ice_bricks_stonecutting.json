@@ -4,5 +4,8 @@
   "ingredient": {
     "item": "moreice:blue_ice_bricks"
   },
-  "result": "moreice:blue_ice_brick_slab"
+  "result": {
+    "count": 1,
+    "id": "moreice:blue_ice_brick_slab"
+  }
 }

@@ -4,5 +4,8 @@
   "ingredient": {
     "item": "minecraft:ice"
   },
-  "result": "moreice:ice_brick_wall"
+  "result": {
+    "count": 1,
+    "id": "moreice:ice_brick_wall"
+  }
 }
