@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "moreice",
+  "version": "${version}",
+  "name": "More Ice",
+  "description": "New variations of ice blocks",
+  "authors": ["deku"],
+  "contact": {
+    "homepage": "https://modrinth.com/mod/moreice",
+    "issues": "https://github.com/Dekunutter/moreice/issues",
+    "sources": "https://github.com/Dekunutter/moreice"
+  },
+  "license": "Creative Commons Attribution 4.0 International Public License",
+  "icon": "logo.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.deku.moreice.fabric.Main"
+    ],
+    "client": [
+      "com.deku.moreice.fabric.client.ClientRegistrar"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "minecraft": ">=1.20.4",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "recommends": {
+    "architectury": ">=9.2.14"
+  }
+}

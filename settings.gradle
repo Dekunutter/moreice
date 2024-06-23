@@ -26,4 +26,4 @@ plugins {
 rootProject.name = 'MoreIce'
 // NOTE: Architectury 1.20.5+ currently does not have Forge support
 //include('common', 'neoforge')
-include('common', 'neoforge')
+include('common', 'neoforge', 'fabric')
