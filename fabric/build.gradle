@@ -99,11 +99,8 @@ components.java {
 processResources {
     inputs.property "version", project.mod_version
 
-    project.logger.lifecycle('project version is')
-    project.logger.lifecycle(project.mod_version)
-
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
+        expand "version": project.mod_version
     }
 }
 
