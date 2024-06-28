@@ -24,6 +24,9 @@
     "moreice:blue_ice_brick_stairs",
     "moreice:ice_button",
     "moreice:packed_ice_button",
-    "moreice:blue_ice_button"
+    "moreice:blue_ice_button",
+    "moreice:chiseled_ice",
+    "moreice:chiseled_packed_ice",
+    "moreice:chiseled_blue_ice"
   ]
 }

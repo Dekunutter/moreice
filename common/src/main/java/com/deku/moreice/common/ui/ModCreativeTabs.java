@@ -24,6 +24,7 @@ public class ModCreativeTabs {
         output.accept(ModItems.ICE_BRICK_STAIRS.get());
         output.accept(ModItems.ICE_PRESSURE_PLATE.get());
         output.accept(ModItems.ICE_BUTTON.get());
+        output.accept(ModItems.CHISELED_ICE.get());
 
         // PACKED ICE
         output.accept(ModItems.PACKED_ICE_STAIRS.get());
@@ -35,6 +36,7 @@ public class ModCreativeTabs {
         output.accept(ModItems.PACKED_ICE_BRICK_STAIRS.get());
         output.accept(ModItems.PACKED_ICE_PRESSURE_PLATE.get());
         output.accept(ModItems.PACKED_ICE_BUTTON.get());
+        output.accept(ModItems.CHISELED_PACKED_ICE.get());
 
         // BLUE ICE
         output.accept(ModItems.BLUE_ICE_STAIRS.get());
@@ -46,6 +48,7 @@ public class ModCreativeTabs {
         output.accept(ModItems.BLUE_ICE_BRICK_STAIRS.get());
         output.accept(ModItems.BLUE_ICE_PRESSURE_PLATE.get());
         output.accept(ModItems.BLUE_ICE_BUTTON.get());
+        output.accept(ModItems.CHISELED_BLUE_ICE.get());
 
         //MISC
         output.accept(ModItems.FREEZER.get());

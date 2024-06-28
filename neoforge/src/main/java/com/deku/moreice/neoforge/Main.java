@@ -12,7 +12,8 @@ import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.InterModComms;
-import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -31,7 +32,7 @@ import java.util.stream.Collectors;
 import static com.deku.moreice.MoreIce.*;
 
 
-// The value here should match an entry in the META-INF/mods.toml file
+// The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(MOD_ID)
 public class Main
 {
@@ -46,14 +47,14 @@ public class Main
      *      - Ensures that biomes are registered early
      *      - Adds additional forge event listeners for biome and world loading events
      */
-    public Main(IEventBus eventBus) {
+    public Main(IEventBus eventBus, ModContainer modContainer) {
         System.out.println("STARTING EXECUTION");
 
         if (HIDE_CONSOLE_NOISE) {
             LogTweaker.applyLogFilterLevel(Level.WARN);
         }
 
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ModConfiguration.COMMON_SPEC, "moreice-common.toml");
+        modContainer.registerConfig(ModConfig.Type.COMMON, ModConfiguration.COMMON_SPEC, "moreice-common.toml");
 
         MoreIce.init();
 
@@ -109,7 +110,7 @@ public class Main
     /**
      * Inner class for different event registers used by the mod
      */
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
+    @EventBusSubscriber(bus=EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
         /**
          * Used to register items into vanilla creative mode tabs in the creative mode UI using the mod event bus
@@ -132,6 +133,7 @@ public class Main
                 entries.putAfter(new ItemStack(ModItems.ICE_BRICK_WALL.get()), new ItemStack(ModItems.ICE_BRICK_STAIRS.get()), visibility);
                 entries.putAfter(new ItemStack(ModItems.ICE_BRICK_STAIRS.get()), new ItemStack(ModItems.ICE_PRESSURE_PLATE.get()), visibility);
                 entries.putAfter(new ItemStack(ModItems.ICE_PRESSURE_PLATE.get()), new ItemStack(ModItems.ICE_BUTTON.get()), visibility);
+                entries.putAfter(new ItemStack(ModItems.ICE_BUTTON.get()), new ItemStack(ModItems.CHISELED_ICE.get()), visibility);
 
                 // Packed Ice
                 entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.PACKED_ICE_STAIRS.get()), visibility);

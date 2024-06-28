@@ -180,6 +180,14 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
         return items.size();
     }
 
+    protected NonNullList<ItemStack> getItems() {
+        return this.items;
+    }
+
+    protected void setItems(NonNullList<ItemStack> items) {
+        this.items = items;
+    }
+
     @Override
     public boolean isEmpty() {
         for(ItemStack itemstack : items) {
@@ -209,7 +217,7 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
     @Override
     public void setItem(int position, ItemStack itemToSet) {
         ItemStack itemstack = items.get(position);
-        boolean flag = !itemToSet.isEmpty() && ItemStack.isSameItemSameTags(itemstack, itemToSet);
+        boolean flag = !itemToSet.isEmpty() && ItemStack.isSameItemSameComponents(itemstack, itemToSet);
         items.set(position, itemToSet);
         if (itemToSet.getCount() > getMaxStackSize()) {
             itemToSet.setCount(getMaxStackSize());
@@ -293,11 +301,11 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
         return coolingTime > 0;
     }
 
-    public void load(CompoundTag tag) {
-        super.load(tag);
+    public void loadAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.loadAdditional(tag, provider);
 
         items = NonNullList.withSize(getContainerSize(), ItemStack.EMPTY);
-        ContainerHelper.loadAllItems(tag, items);
+        ContainerHelper.loadAllItems(tag, items, provider);
 
         coolingTime = tag.getInt("CoolTime");
         freezingProgress = tag.getInt("CoolingProgress");
@@ -310,13 +318,13 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
         }
     }
 
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
+    protected void saveAdditional(CompoundTag tag, HolderLookup.Provider provider) {
+        super.saveAdditional(tag, provider);
         tag.putInt("CoolTime", coolingTime);
         tag.putInt("CoolingProgress", freezingProgress);
         tag.putInt("CoolingTotalTime", freezingTotalTime);
 
-        ContainerHelper.saveAllItems(tag, items);
+        ContainerHelper.saveAllItems(tag, items, provider);
         CompoundTag compoundTag = new CompoundTag();
         recipesUsed.forEach((recipe, value) -> {
             compoundTag.putInt(recipe.toString(), value);
@@ -414,7 +422,7 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
 
     private boolean canFreeze(RegistryAccess registry, RecipeHolder<?> holder, NonNullList<ItemStack> items, int flag) {
         if (!items.get(0).isEmpty() && holder != null) {
-            ItemStack itemstack = ((RecipeHolder<Recipe<WorldlyContainer>>)holder).value().assemble(this, registry);
+            ItemStack itemstack = holder.value().getResultItem(registry);
             if (itemstack.isEmpty()) {
                 return false;
             } else {
@@ -423,10 +431,12 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
                     return true;
                 } else if (!ItemStack.isSameItem(itemstack1, itemstack)) {
                     return false;
-                } else if (itemstack1.getCount() + itemstack.getCount() <= flag && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) { // Forge fix: make furnace respect stack sizes in furnace recipes
+                    //} else if (itemstack1.getCount() + itemstack.getCount() <= flag && itemstack1.getCount() + itemstack.getCount() <= itemstack1.getMaxStackSize()) { // Forge fix: make furnace respect stack sizes in furnace recipes
+                } else if (itemstack1.getCount() < flag && itemstack1.getCount() < itemstack1.getMaxStackSize()) {
                     return true;
                 } else {
-                    return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
+                    return itemstack1.getCount() < itemstack.getMaxStackSize();
+                    //return itemstack1.getCount() + itemstack.getCount() <= itemstack.getMaxStackSize(); // Forge fix: make furnace respect stack sizes in furnace recipes
                 }
             }
         } else {
@@ -437,7 +447,8 @@ public class FreezerBlockEntity extends BaseContainerBlockEntity implements Worl
     private boolean freeze(RegistryAccess registry, RecipeHolder<?> holder, NonNullList<ItemStack> items, int flag) {
         if (holder != null && canFreeze(registry, holder, items, flag)) {
             ItemStack itemstack = items.get(0);
-            ItemStack itemstack1 = ((RecipeHolder<Recipe<WorldlyContainer>>) holder).value().assemble(this, registry);
+            //ItemStack itemstack1 = ((RecipeHolder<Recipe<WorldlyContainer>>) holder).value().assemble(this, registry);
+            ItemStack itemstack1 = holder.value().getResultItem(registry);
             ItemStack itemstack2 = items.get(2);
             // NOTE: Setting count increments of 4 here as a hardcoded result to all recipes cause I dont want to bother to make a new recipe serializer just to have a working count value for cooking recipe results
             int resultCount = 1;

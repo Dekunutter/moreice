@@ -17,6 +17,10 @@ public class MoreIce {
     public static final boolean HIDE_CONSOLE_NOISE = true;
 
     public static void init() {
+        // Recipes
+        ModRecipeType.RECIPE_TYPES.register();
+        ModRecipeSerializer.RECIPE_SERIALIZERS.register();
+
         // Blocks
         ModBlocks.BLOCKS.register();
         ModBlockEntityType.BLOCK_ENTITIES.register();
@@ -26,10 +30,6 @@ public class MoreIce {
 
         // Menus
         ModMenuType.MENU_TYPES.register();
-
-        // Recipes
-        ModRecipeType.RECIPE_TYPES.register();
-        ModRecipeSerializer.RECIPE_SERIALIZERS.register();
 
         // Creative Mode Tabs
         ModCreativeTabs.CREATIVE_MOD_TABS.register();

@@ -21,6 +21,7 @@ public class ModBlocks {
     public static final RegistrySupplier<Block> ICE_BRICK_STAIRS = BLOCKS.register("ice_brick_stairs", IceBrickStairs::new);
     public static final RegistrySupplier<Block> ICE_PRESSURE_PLATE = BLOCKS.register("ice_pressure_plate", IcePressurePlate::new);
     public static final RegistrySupplier<Block> ICE_BUTTON = BLOCKS.register("ice_button", IceButton::new);
+    public static final RegistrySupplier<Block> CHISELED_ICE = BLOCKS.register("chiseled_ice", ChiseledIce::new);
 
     // PACKED ICE
     public static final RegistrySupplier<Block> PACKED_ICE_STAIRS = BLOCKS.register("packed_ice_stairs", PackedIceStairs::new);
@@ -32,6 +33,7 @@ public class ModBlocks {
     public static final RegistrySupplier<Block> PACKED_ICE_BRICK_STAIRS = BLOCKS.register("packed_ice_brick_stairs", PackedIceBrickStairs::new);
     public static final RegistrySupplier<Block> PACKED_ICE_PRESSURE_PLATE = BLOCKS.register("packed_ice_pressure_plate", PackedIcePressurePlate::new);
     public static final RegistrySupplier<Block> PACKED_ICE_BUTTON = BLOCKS.register("packed_ice_button", PackedIceButton::new);
+    public static final RegistrySupplier<Block> CHISELED_PACKED_ICE = BLOCKS.register("chiseled_packed_ice", ChiseledPackedIce::new);
 
     // BLUE ICE
     public static final RegistrySupplier<Block> BLUE_ICE_STAIRS = BLOCKS.register("blue_ice_stairs", BlueIceStairs::new);
@@ -43,6 +45,7 @@ public class ModBlocks {
     public static final RegistrySupplier<Block> BLUE_ICE_BRICK_STAIRS = BLOCKS.register("blue_ice_brick_stairs", BlueIceBrickStairs::new);
     public static final RegistrySupplier<Block> BLUE_ICE_PRESSURE_PLATE = BLOCKS.register("blue_ice_pressure_plate", BlueIcePressurePlate::new);
     public static final RegistrySupplier<Block> BLUE_ICE_BUTTON = BLOCKS.register("blue_ice_button", BlueIceButton::new);
+    public static final RegistrySupplier<Block> CHISELED_BLUE_ICE = BLOCKS.register("chiseled_blue_ice", ChiseledBlueIce::new);
 
     // MISC
     public static final RegistrySupplier<Block> FREEZER = BLOCKS.register("freezer", Freezer::new);

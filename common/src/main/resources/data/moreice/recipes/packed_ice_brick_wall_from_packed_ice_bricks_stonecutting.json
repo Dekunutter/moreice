@@ -4,5 +4,8 @@
   "ingredient": {
     "item": "moreice:packed_ice_bricks"
   },
-  "result": "moreice:packed_ice_brick_wall"
+  "result": {
+    "count": 1,
+    "id": "moreice:packed_ice_brick_wall"
+  }
 }

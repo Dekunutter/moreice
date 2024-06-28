@@ -4,5 +4,8 @@
   "ingredient": {
     "item": "moreice:ice_bricks"
   },
-  "result": "moreice:ice_brick_stairs"
+  "result": {
+    "count": 1,
+    "id": "moreice:ice_brick_stairs"
+  }
 }

@@ -12,7 +12,7 @@ public class ModRecipeType {
 
     public static RegistrySupplier<RecipeType<FreezingRecipe>> FREEZING = RECIPE_TYPES.register("freezing", () -> new RecipeType<FreezingRecipe>() {
         public String toString() {
-            return MOD_ID + ":freezing";
+            return "freezing";
         }
     });
 }

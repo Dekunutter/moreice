@@ -8,12 +8,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Containers;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -69,13 +66,13 @@ public class Freezer extends BaseEntityBlock implements SimpleWaterloggedBlock {
      * @param level
      * @param position
      * @param player
-     * @param hand
      * @param hitResult
      * @return
      */
-    public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult) {
+    public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos position, Player player, BlockHitResult hitResult) {
         if (!level.isClientSide) {
-            this.openContainer(level, position, player);
+            openContainer(level, position, player);
+            return InteractionResult.CONSUME;
         }
 
         return InteractionResult.sidedSuccess(level.isClientSide);
@@ -94,14 +91,14 @@ public class Freezer extends BaseEntityBlock implements SimpleWaterloggedBlock {
         return defaultBlockState().setValue(FACING, placeContext.getHorizontalDirection().getOpposite()).setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
     }
 
-    public void setPlacedBy(Level level, BlockPos position, BlockState state, LivingEntity entity, ItemStack itemStack) {
-        if (itemStack.hasCustomHoverName()) {
-            BlockEntity blockentity = level.getBlockEntity(position);
-            if (blockentity instanceof FreezerBlockEntity) {
-                ((FreezerBlockEntity) blockentity).setCustomName(itemStack.getHoverName());
-            }
-        }
-    }
+//    public void setPlacedBy(Level level, BlockPos position, BlockState state, LivingEntity entity, ItemStack itemStack) {
+//        if (itemStack.hasCustomHoverName()) {
+//            BlockEntity blockentity = level.getBlockEntity(position);
+//            if (blockentity instanceof FreezerBlockEntity) {
+//                ((FreezerBlockEntity) blockentity).setCustomName(itemStack.getHoverName());
+//            }
+//        }
+//    }
 
     /**
      * Makes sure the freezer drops its contents when broken so items within are not lost
