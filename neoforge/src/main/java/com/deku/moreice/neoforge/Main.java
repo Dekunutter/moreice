@@ -133,6 +133,7 @@ public class Main
                 entries.putAfter(new ItemStack(ModItems.ICE_BRICK_WALL.get()), new ItemStack(ModItems.ICE_BRICK_STAIRS.get()), visibility);
                 entries.putAfter(new ItemStack(ModItems.ICE_BRICK_STAIRS.get()), new ItemStack(ModItems.ICE_PRESSURE_PLATE.get()), visibility);
                 entries.putAfter(new ItemStack(ModItems.ICE_PRESSURE_PLATE.get()), new ItemStack(ModItems.ICE_BUTTON.get()), visibility);
+                entries.putAfter(new ItemStack(ModItems.ICE_BUTTON.get()), new ItemStack(ModItems.CHISELED_ICE.get()), visibility);
 
                 // Packed Ice
                 entries.putAfter(new ItemStack(Items.PACKED_ICE), new ItemStack(ModItems.PACKED_ICE_STAIRS.get()), visibility);

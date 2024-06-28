@@ -31,5 +31,6 @@ public class ClientRegistrar implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ICE_BRICK_STAIRS.get(), RenderType.translucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ICE_PRESSURE_PLATE.get(), RenderType.translucent());
         BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.ICE_BUTTON.get(), RenderType.translucent());
+        BlockRenderLayerMap.INSTANCE.putBlock(ModBlocks.CHISELED_ICE.get(), RenderType.translucent());
     }
 }

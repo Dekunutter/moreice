@@ -68,7 +68,6 @@ dependencies {
 }
 
 shadowJar {
-    exclude "fabric.mod.json"
     exclude "architectury.common.json"
 
     configurations = [project.configurations.shadowCommon]
@@ -98,7 +97,10 @@ components.java {
 // When "copyIdeResources" is enabled, this will also run before the game launches in IDE environments.
 // See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
 processResources {
-    inputs.property "version", project.version
+    inputs.property "version", project.mod_version
+
+    project.logger.lifecycle('project version is')
+    project.logger.lifecycle(project.mod_version)
 
     filesMatching("fabric.mod.json") {
         expand "version": project.version
